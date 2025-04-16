@@ -1,9 +1,9 @@
 package Model;
 
-public class Beneficiado extends Pessoa{
+public class Beneficiado extends Usuario{
     private int cod;
     private int dataE;
-    private String entedeco;
+    private String endereco;
 
     public int getCod() {
         return cod;
@@ -21,12 +21,12 @@ public class Beneficiado extends Pessoa{
         this.dataE = dataE;
     }
 
-    public String getEntedeco() {
-        return entedeco;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEntedeco(String entedeco) {
-        this.entedeco = entedeco;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
     
 }

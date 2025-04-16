@@ -1,6 +1,6 @@
 package Model;
 
-public class Voluntario extends Pessoa{
+public class Voluntario extends Usuario{
     private int cod;
     private int dataE;
 
@@ -19,6 +19,5 @@ public class Voluntario extends Pessoa{
     public void setDataE(int dataE) {
         this.dataE = dataE;
     }
-    
-    
+        
 }

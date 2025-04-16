@@ -1,6 +1,6 @@
 package Model;
 
-public class Admin extends Pessoa{
+public class Admin extends Usuario{
     private int idMestre;
 
     public int getIdMestre() {

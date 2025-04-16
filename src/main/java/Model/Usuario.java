@@ -1,9 +1,18 @@
 package Model;
 
-public class Pessoa {
+public class Usuario {
     private String nome;
     private int RG;
     private int cargo;
+    private String email; 
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getNome() {
         return nome;

@@ -1,20 +1,29 @@
 package Model;
 
-public class Palestra {
+public class Evento {
     
-    private int idPalestra;
+    private int idEvento;
     private String orador;
     private int data;
     private int horario;
     private String local;
     private int vagas;
+    private int tipo;
 
-    public int getIdPalestra() {
-        return idPalestra;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setIdPalestra(int idPalestra) {
-        this.idPalestra = idPalestra;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(int idEvento) {
+        this.idEvento = idEvento;
     }
 
     public String getOrador() {
