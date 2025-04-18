@@ -1,14 +1,28 @@
 package Model;
 
+import java.util.List;
+
 public class Estoque {
     
     private int codigo;
     private int dataE;
     private int dataS;
     private String doador;
-    private String produto;
     private String destino;
+    private List<Produto> produtos;
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void adicionarProduto(Produto produto) {
+        produtos.add(produto);
+    }
+    
+    public void removerProduto(Produto produto) {
+        produtos.remove(produto);
+    }
+    
     public String getDestino() {
         return destino;
     }
@@ -48,13 +62,4 @@ public class Estoque {
     public void setDoador(String doador) {
         this.doador = doador;
     }
-
-    public String getProduto() {
-        return produto;
-    }
-
-    public void setProduto(String produto) {
-        this.produto = produto;
-    }
-    
 }
