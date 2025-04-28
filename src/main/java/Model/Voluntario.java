@@ -4,6 +4,12 @@ public class Voluntario extends Usuario{
     private int cod;
     private int dataE;
 
+    public Voluntario(int cod, int dataE, String nome, int RG, int cargo, String email) {
+        super(nome, RG, cargo, email);
+        this.cod = cod;
+        this.dataE = dataE;
+    }
+
     public int getCod() {
         return cod;
     }

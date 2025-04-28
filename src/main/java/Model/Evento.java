@@ -10,6 +10,16 @@ public class Evento {
     private int vagas;
     private int tipo;
 
+    public Evento(int idEvento, String orador, int data, int horario, String local, int vagas, int tipo) {
+        this.idEvento = idEvento;
+        this.orador = orador;
+        this.data = data;
+        this.horario = horario;
+        this.local = local;
+        this.vagas = vagas;
+        this.tipo = tipo;
+    }
+
     public int getTipo() {
         return tipo;
     }

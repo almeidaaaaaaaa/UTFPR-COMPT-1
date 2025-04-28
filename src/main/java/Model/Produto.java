@@ -5,6 +5,12 @@ public class Produto {
     private int quantidade;
     private String nome;
 
+    public Produto(int codigo, int quantidade, String nome) {
+        this.codigo = codigo;
+        this.quantidade = quantidade;
+        this.nome = nome;
+    }
+
     public int getCodigo() {
         return codigo;
     }
