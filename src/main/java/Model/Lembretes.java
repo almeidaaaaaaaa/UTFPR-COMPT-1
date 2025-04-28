@@ -5,6 +5,12 @@ public class Lembretes {
     private int data;
     private String destinatario;
 
+    public Lembretes(String recado, int data, String destinatario) {
+        this.recado = recado;
+        this.data = data;
+        this.destinatario = destinatario;
+    }
+
     public String getRecado() {
         return recado;
     }

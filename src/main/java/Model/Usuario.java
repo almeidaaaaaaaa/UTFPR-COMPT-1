@@ -6,6 +6,13 @@ public class Usuario {
     private int cargo;
     private String email; 
 
+    public Usuario(String nome, int RG, int cargo, String email) {
+        this.nome = nome;
+        this.RG = RG;
+        this.cargo = cargo;
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }

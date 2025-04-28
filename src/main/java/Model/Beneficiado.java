@@ -5,6 +5,13 @@ public class Beneficiado extends Usuario{
     private int dataE;
     private String endereco;
 
+    public Beneficiado(int cod, int dataE, String endereco, String nome, int RG, int cargo, String email) {
+        super(nome, RG, cargo, email);
+        this.cod = cod;
+        this.dataE = dataE;
+        this.endereco = endereco;
+    }
+
     public int getCod() {
         return cod;
     }

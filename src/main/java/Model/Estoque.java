@@ -9,7 +9,16 @@ public class Estoque {
     private int dataS;
     private String doador;
     private String destino;
-    private List<Produto> produtos;
+    private final List<Produto> produtos;
+
+    public Estoque(int codigo, int dataE, int dataS, String doador, String destino, List<Produto> produtos) {
+        this.codigo = codigo;
+        this.dataE = dataE;
+        this.dataS = dataS;
+        this.doador = doador;
+        this.destino = destino;
+        this.produtos = produtos;
+    }
 
     public List<Produto> getProdutos() {
         return produtos;
