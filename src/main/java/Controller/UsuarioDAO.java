@@ -15,10 +15,10 @@ public class UsuarioDAO {
             if (conn != null) {
                 String sql = "INSERT INTO usuario(Usu_rg, Usu_nome, Usu_cargo, Usu_email) VALUES (?, ?, ?, ?)";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setInt(1, 2);
-                    stmt.setString(2, "Gabriel");
-                    stmt.setString(3, "1");
-                    stmt.setString(4, "Gabriel@email");
+                    stmt.setInt(1, u.getRG());
+                    stmt.setString(2, u.getNome());
+                    stmt.setInt(3, u.getCargo());
+                    stmt.setString(4, u.getEmail());
                     stmt.executeUpdate();
                 }catch(SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo usuário", e);

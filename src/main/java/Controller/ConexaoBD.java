@@ -9,7 +9,7 @@ public class ConexaoBD {
     static String url = "jdbc:mysql://localhost:3306/competente";
     static String driver = "com.mysql.cj.jdbc.Driver";
     static String user = "root";
-    static String senha = "ds";
+    static String senha = "";
 
     public Connection getConnection() {
 

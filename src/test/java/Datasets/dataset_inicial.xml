@@ -1,0 +1,12 @@
+<dataset>
+    <administrador />
+    <beneficiado />
+    <doacao />
+    <estoque />
+    <evento />
+    <lembrete />
+    <lembrete_has_beneficiado />
+    <produto />
+    <voluntario />
+     <usuario />
+</dataset>
