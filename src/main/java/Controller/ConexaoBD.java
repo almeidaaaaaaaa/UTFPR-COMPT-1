@@ -9,9 +9,9 @@ public class ConexaoBD {
     static String url = "jdbc:mysql://localhost:3306/competente";
     static String driver = "com.mysql.cj.jdbc.Driver";
     static String user = "root";
-    static String senha = "2004Gu$tavo";
+    static String senha = "ds";
 
-    public Connection ConexaoBD() {
+    public Connection getConnection() {
 
         try {
             System.out.println("Carregando o driver...");
