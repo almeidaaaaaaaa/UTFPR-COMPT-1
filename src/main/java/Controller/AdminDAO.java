@@ -14,6 +14,7 @@ import java.sql.SQLException;
  * @author joaom
  */
 public class AdminDAO {
+
     public static void inserir(Admin a) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
@@ -24,13 +25,13 @@ public class AdminDAO {
                     stmt.setInt(2, a.getRG());
                     stmt.setInt(3, a.getCod());
                     stmt.executeUpdate();
-                }catch(SQLException e) {
+                } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo Administrador", e);
                 }
             } else {
-                System.out.println("Nao foi possivel conectar ao banco.");
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
             }
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }

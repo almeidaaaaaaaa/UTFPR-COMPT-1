@@ -1,4 +1,3 @@
-
 package Controller;
 
 import Model.Usuario;
@@ -6,9 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 public class UsuarioDAO {
-    
+
     public static void inserir(Usuario u) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
@@ -20,16 +18,14 @@ public class UsuarioDAO {
                     stmt.setInt(3, u.getCargo());
                     stmt.setString(4, u.getEmail());
                     stmt.executeUpdate();
-                }catch(SQLException e) {
+                } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo usuário", e);
                 }
             } else {
-                System.out.println("Nao foi possivel conectar ao banco.");
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
             }
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
 }
-
-

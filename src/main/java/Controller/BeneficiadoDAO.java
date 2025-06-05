@@ -15,6 +15,7 @@ import java.sql.Timestamp;
  * @author joaom
  */
 public class BeneficiadoDAO {
+
     public static void inserir(Beneficiado b) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
@@ -26,13 +27,13 @@ public class BeneficiadoDAO {
                     stmt.setString(3, b.getEndereco());
                     stmt.setInt(4, b.getRG());
                     stmt.executeUpdate();
-                }catch(SQLException e) {
+                } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo Beneficiado", e);
                 }
             } else {
-                System.out.println("Nao foi possivel conectar ao banco.");
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
             }
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
