@@ -1,5 +1,6 @@
 import Controller.UsuarioDAO;
 import Model.Usuario;
+import java.io.InputStream;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
@@ -23,9 +24,12 @@ public class UsuarioDAOTest {
             ""
         );
 
-        IDataSet dataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("Datasets/dataset_inicial.xml"));
-        
+        InputStream is = getClass().getResourceAsStream("/Datasets/dataset_inicial.xml");
+        if (is == null) {
+            throw new IllegalStateException("Arquivo dataset_inicial.xml não encontrado!");
+        }
+        IDataSet dataSet = new FlatXmlDataSetBuilder().build(is);
+
         jdt.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         jdt.setDataSet(dataSet);
         jdt.onSetup();

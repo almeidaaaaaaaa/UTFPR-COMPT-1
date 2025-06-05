@@ -1,4 +1,4 @@
 <dataset>
-    <voluntario Vol_cod="1" Vol_data="2025-06-04T10:00" Usuario_Usu_rg="2"  />
-    <usuario Usu_rg="2" Usu_nome="pacheco" Usu_cargo="0" Usu_email="pachec@email.com" />
+    <administrador Adm_idMestre="1" Usuario_Usu_rg="123" Adm_cod="1" />
+    <usuario Usu_rg="123" Usu_nome="joao" Usu_cargo="0" Usu_email="joao@email.com" />
 </dataset>

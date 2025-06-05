@@ -1,7 +1,7 @@
+import Controller.AdminDAO;
 import Controller.UsuarioDAO;
-import Controller.VoluntarioDAO;
-import Model.Voluntario;
-import java.time.LocalDateTime;
+import Model.Admin;
+import java.io.InputStream;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
@@ -12,7 +12,7 @@ import org.dbunit.Assertion;
 import org.junit.Before;
 import org.junit.Test;
 
-public class VoluntarioDAOTest {
+public class AdminDAOTest {
 
     private IDatabaseTester jdt;
 
@@ -24,9 +24,13 @@ public class VoluntarioDAOTest {
             "root",
             ""
         );
-        IDataSet dataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("Datasets/dataset_inicial.xml"));
-        
+
+        InputStream is = getClass().getResourceAsStream("/Datasets/dataset_inicial.xml");
+        if (is == null) {
+            throw new IllegalStateException("Arquivo dataset_inicial.xml não encontrado!");
+        }
+        IDataSet dataSet = new FlatXmlDataSetBuilder().build(is);
+
         jdt.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         jdt.setDataSet(dataSet);
         jdt.onSetup();
@@ -34,16 +38,16 @@ public class VoluntarioDAOTest {
 
     @Test
     public void inserir() throws Exception {
-        Voluntario v = new Voluntario(1, LocalDateTime.of(2025, 6, 4, 10, 0), "pacheco", 2, 0, "pachec@email.com");
-        UsuarioDAO.inserir(v);
-        VoluntarioDAO.inserir(v);
+        Admin a = new Admin(1, 1, "joao", 123, 0, "joao@email.com");
+        UsuarioDAO.inserir(a);
+        AdminDAO.inserir(a);
 
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
-        ITable currentTable = currentDataSet.getTable("voluntario");
+        ITable currentTable = currentDataSet.getTable("administrador");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("/Datasets/VoluntarioDAOInserir.xml"));
-        ITable expectedTable = expectedDataSet.getTable("voluntario");
+                .build(getClass().getResourceAsStream("/Datasets/AdminDAOInserir.xml"));
+        ITable expectedTable = expectedDataSet.getTable("administrador");
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
