@@ -4,10 +4,35 @@
  */
 package Controller;
 
+import Model.Admin;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author joaom
  */
 public class AdminDAO {
-    
+
+    public static void inserir(Admin a) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "INSERT INTO administrador(Adm_idMestre, Usuario_Usu_rg, Adm_cod) VALUES (?, ?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setInt(1, a.getIdMestre());
+                    stmt.setInt(2, a.getRG());
+                    stmt.setInt(3, a.getCod());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel inserir novo Administrador", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
 }

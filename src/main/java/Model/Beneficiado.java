@@ -1,11 +1,13 @@
 package Model;
 
+import java.time.LocalDateTime;
+
 public class Beneficiado extends Usuario{
     private int cod;
-    private int dataE;
+    private LocalDateTime dataE;
     private String endereco;
 
-    public Beneficiado(int cod, int dataE, String endereco, String nome, int RG, int cargo, String email) {
+    public Beneficiado(int cod, LocalDateTime dataE, String endereco, String nome, int RG, int cargo, String email) {
         super(nome, RG, cargo, email);
         this.cod = cod;
         this.dataE = dataE;
@@ -20,11 +22,11 @@ public class Beneficiado extends Usuario{
         this.cod = cod;
     }
 
-    public int getDataE() {
+    public LocalDateTime getDataE() {
         return dataE;
     }
 
-    public void setDataE(int dataE) {
+    public void setDataE(LocalDateTime dataE) {
         this.dataE = dataE;
     }
 

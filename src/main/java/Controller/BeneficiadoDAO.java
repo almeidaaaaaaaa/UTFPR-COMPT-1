@@ -4,10 +4,37 @@
  */
 package Controller;
 
+import Model.Beneficiado;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 /**
  *
  * @author joaom
  */
 public class BeneficiadoDAO {
-    
+
+    public static void inserir(Beneficiado b) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "INSERT INTO beneficiado(Ben_cod, Ben_data, Ben_endereco,Usuario_Usu_rg) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setInt(1, b.getCod());
+                    stmt.setTimestamp(2, Timestamp.valueOf(b.getDataE()));
+                    stmt.setString(3, b.getEndereco());
+                    stmt.setInt(4, b.getRG());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel inserir novo Beneficiado", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
 }
