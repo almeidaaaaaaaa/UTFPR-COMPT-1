@@ -23,6 +23,7 @@
             <artifactId>dbunit</artifactId>
             <version>3.0.0</version>
             <type>jar</type>
+            <scope>test</scope>
         </dependency>
         
         <!-- JUnit -->
