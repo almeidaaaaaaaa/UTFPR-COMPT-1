@@ -14,14 +14,14 @@ import java.sql.*;
 //como nao tem requerimento de senha nao existe mais de uma excessao entao o unico modo de falha e se o usuario ja existir
     
 
-public class SignupDAO 
+public class Signup 
 {
 
     public static boolean registrar(String usuario, String senha) 
     {
         ConexaoBD bd = new ConexaoBD();
         Connection conn = bd.getConnection();
-        String inserirSql = "INSERT INTO dados_login (Usu_rg, Usu_senha) VALUES (?, ?)";
+        String inserirSql = "INSERT INTO dados_login (Usu_rg, Usu_senha) VALUES (?, ?)";//
 
         //verificar conexao com o bd
         try(PreparedStatement stmt = conn.prepareStatement(inserirSql))
@@ -35,7 +35,7 @@ public class SignupDAO
             }
 
             // Insere novo usuário
-            try (PreparedStatement inserirStmt = conn.prepareStatement(inserirSql)) 
+            try (PreparedStatement inserirStmt = conn.prepareStatement(inserirSql)) //usa da parte da logica de cadastro de admin e outros
             {
                 //pra essa parte provavelmente vai precisar da logica de cadostro de admins?
                 inserirStmt.setString(1, usuario);
