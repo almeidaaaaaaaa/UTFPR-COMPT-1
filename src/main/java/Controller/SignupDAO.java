@@ -19,24 +19,15 @@ public class SignupDAO
 
     public static boolean registrar(String usuario, String senha) 
     {
-        String url = "jdbc:mysql://localhost:3306/competente";
-        String user = "root"; // seu usuário do MySQL
-        String pass = ""; // sua senha do MySQL
-
-        String verificarSql = "SELECT * FROM usuario WHERE Usu_rg = ?";
+        ConexaoBD bd = new ConexaoBD();
+        Connection conn = bd.getConnection();
         String inserirSql = "INSERT INTO dados_login (Usu_rg, Usu_senha) VALUES (?, ?)";
 
         //verificar conexao com o bd
-        try 
-            (
-            Connection conn = DriverManager.getConnection(url, user, pass);
-            PreparedStatement verificarStmt = conn.prepareStatement(verificarSql)
-        )
+        try(PreparedStatement stmt = conn.prepareStatement(inserirSql))
             
         {
             // Verifica se o usuário já existe
-            
-
             if (UsuarioDAO.verificarRG(usuario)) 
             {
                 System.out.println("");//quando o componente visual existir colocar um pop-up com usuario ja existe
@@ -46,6 +37,7 @@ public class SignupDAO
             // Insere novo usuário
             try (PreparedStatement inserirStmt = conn.prepareStatement(inserirSql)) 
             {
+                //pra essa parte provavelmente vai precisar da logica de cadostro de admins?
                 inserirStmt.setString(1, usuario);
                 inserirStmt.setString(2, senha);
                 inserirStmt.executeUpdate();
@@ -60,14 +52,5 @@ public class SignupDAO
         }
     }
 
-    public static void main(String[] args) {
-        if (registrar(""/*output da box de registro campo de usuario*/, ""/*output da box de registro campo senha */)) 
-        {
-            System.out.println("Registro realizado.");
-        } 
-        else 
-        {
-            System.out.println("Falha no registro.");
-        }
-    }
+    
 }
