@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Controller;
 
 import java.sql.*;
 
@@ -14,7 +14,7 @@ import java.sql.*;
 //como nao tem requerimento de senha nao existe mais de uma excessao entao o unico modo de falha e se o usuario ja existir
     
 
-public class Signup 
+public class SignupDAO 
 {
 
     public static boolean registrar(String usuario, String senha) 
@@ -23,8 +23,8 @@ public class Signup
         String user = "root"; // seu usuário do MySQL
         String pass = ""; // sua senha do MySQL
 
-        String verificarSql = "SELECT * FROM dados_login WHERE dad_login = ?";
-        String inserirSql = "INSERT INTO dados_login (dad_login, dad_senha) VALUES (?, ?)";
+        String verificarSql = "SELECT * FROM usuario WHERE Usu_rg = ?";
+        String inserirSql = "INSERT INTO dados_login (Usu_rg, Usu_senha) VALUES (?, ?)";
 
         //verificar conexao com o bd
         try 
@@ -35,10 +35,9 @@ public class Signup
             
         {
             // Verifica se o usuário já existe
-            verificarStmt.setString(1, usuario);
-            ResultSet rs = verificarStmt.executeQuery();
+            
 
-            if (rs.next()) 
+            if (UsuarioDAO.verificarRG(usuario)) 
             {
                 System.out.println("");//quando o componente visual existir colocar um pop-up com usuario ja existe
                 return false;
