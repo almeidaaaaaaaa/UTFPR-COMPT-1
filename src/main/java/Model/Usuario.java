@@ -1,13 +1,14 @@
 package Model;
 
 public class Usuario {
+
     private String nome;
     private int RG;
     private int cargo;
     private String email;
     private String senha;
 
-    public Usuario(String nome, int RG, int cargo, String email,String senha) {
+    public Usuario(String nome, int RG, int cargo, String email, String senha) {
         this.nome = nome;
         this.RG = RG;
         this.cargo = cargo;
@@ -56,5 +57,5 @@ public class Usuario {
     public void setCargo(int cargo) {
         this.cargo = cargo;
     }
-    
+
 }

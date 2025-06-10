@@ -38,7 +38,7 @@ public class AdminDAOTest {
 
     @Test
     public void inserir() throws Exception {
-        Admin a = new Admin(1, 1, "joao", 123, 0, "joao@email.com");
+        Admin a = new Admin(1, 1, "joao", 123, 0, "joao@email.com", "123");
         UsuarioDAO.inserir(a);
         AdminDAO.inserir(a);
 

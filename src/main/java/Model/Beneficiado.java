@@ -7,8 +7,8 @@ public class Beneficiado extends Usuario{
     private LocalDateTime dataE;
     private String endereco;
 
-    public Beneficiado(int cod, LocalDateTime dataE, String endereco, String nome, int RG, int cargo, String email,String senha) {
-        super(nome, RG, cargo, email,senha);
+    public Beneficiado(int cod, LocalDateTime dataE, String endereco, String nome, int RG, int cargo, String email, String senha) {
+        super(nome, RG, cargo, email, senha);
         this.cod = cod;
         this.dataE = dataE;
         this.endereco = endereco;

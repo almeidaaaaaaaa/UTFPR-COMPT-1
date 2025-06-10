@@ -5,42 +5,29 @@
 package Controller;
 
 import Model.Usuario;
+import java.sql.SQLException;
 
 /**
  *
  * @author scard
  */
-
 //como nao tem requerimento de senha nao existe mais de uma excessao entao o unico modo de falha e se o usuario ja existir
-    
+public class Signup {
 
-public class Signup
-{
-    static UsuarioDAO user = new UsuarioDAO();
+    public static boolean registrar(Usuario u) {
 
-    public static boolean registrar(Usuario u) 
-    {
-        
-        if (UsuarioDAO.verificarRG(u.getNome())) 
-        {
+        if (UsuarioDAO.verificarRG(u.getRG())) {
             System.out.println("");//quando o componente visual existir colocar um pop-up com usuario ja existe
             return false;
         }
-        
-        
 
-        try
-        {
-           user.inserir(u);
-           return true;
-            
+        try {
+            UsuarioDAO.inserir(u);
+            return true;
+
+        } catch (SQLException e) {
+            return false;
         }
-        catch(Exception e)
-                {
-                    e.printStackTrace();
-                    return false;
-                }
     }
 
-    
 }
