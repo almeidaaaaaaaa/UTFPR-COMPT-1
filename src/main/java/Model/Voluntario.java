@@ -6,8 +6,8 @@ public class Voluntario extends Usuario{
     private int cod;
     private LocalDateTime dataE;
 
-    public Voluntario(int cod, LocalDateTime dataE, String nome, int RG, int cargo, String email) {
-        super(nome, RG, cargo, email);
+    public Voluntario(int cod, LocalDateTime dataE, String nome, int RG, int cargo, String email, String senha) {
+        super(nome, RG, cargo, email, senha);
         this.cod = cod;
         this.dataE = dataE;
     }

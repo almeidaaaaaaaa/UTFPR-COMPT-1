@@ -39,7 +39,7 @@ public class BeneficiadoDAOTest {
 
     @Test
     public void inserir() throws Exception {
-        Beneficiado b = new Beneficiado(1, LocalDateTime.of(2025, 6, 4, 10, 0), "rua tal", "almeida",123, 0, "almeida@email.com");
+        Beneficiado b = new Beneficiado(1, LocalDateTime.of(2025, 6, 4, 10, 0), "rua tal", "almeida",123, 0, "almeida@email.com", "123");
         UsuarioDAO.inserir(b);
         BeneficiadoDAO.inserir(b);
 

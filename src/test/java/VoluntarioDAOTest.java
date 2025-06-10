@@ -39,7 +39,7 @@ public class VoluntarioDAOTest {
 
     @Test
     public void inserir() throws Exception {
-        Voluntario v = new Voluntario(1, LocalDateTime.of(2025, 6, 4, 10, 0), "pacheco", 2, 0, "pachec@email.com");
+        Voluntario v = new Voluntario(1, LocalDateTime.of(2025, 6, 4, 10, 0), "pacheco", 2, 0, "pachec@email.com", "123");
         UsuarioDAO.inserir(v);
         VoluntarioDAO.inserir(v);
 
