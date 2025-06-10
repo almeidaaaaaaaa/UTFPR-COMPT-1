@@ -3,5 +3,6 @@
     <voluntario />
     <administrador />
     <beneficiado />
+    <estoque />
 
 </dataset>
