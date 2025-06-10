@@ -23,6 +23,7 @@
             <artifactId>dbunit</artifactId>
             <version>3.0.0</version>
             <type>jar</type>
+            <scope>test</scope>
         </dependency>
         
         <!-- JUnit -->
@@ -31,6 +32,20 @@
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- DBUnit -->
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+
+        <!-- MySQL JDBC Driver -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
         </dependency>
     </dependencies>
 
