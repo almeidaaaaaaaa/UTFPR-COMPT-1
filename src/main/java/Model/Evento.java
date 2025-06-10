@@ -1,16 +1,18 @@
 package Model;
 
+import java.time.LocalDateTime;
+
 public class Evento {
     
     private int idEvento;
     private String orador;
-    private int data;
-    private int horario;
+    private LocalDateTime data;
+    private LocalDateTime horario;
     private String local;
     private int vagas;
     private int tipo;
 
-    public Evento(int idEvento, String orador, int data, int horario, String local, int vagas, int tipo) {
+    public Evento(int idEvento, String orador, LocalDateTime data, LocalDateTime horario, String local, int vagas, int tipo) {
         this.idEvento = idEvento;
         this.orador = orador;
         this.data = data;
@@ -44,19 +46,19 @@ public class Evento {
         this.orador = orador;
     }
 
-    public int getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
-    public int getHorario() {
+    public LocalDateTime getHorario() {
         return horario;
     }
 
-    public void setHorario(int horario) {
+    public void setHorario(LocalDateTime horario) {
         this.horario = horario;
     }
 
