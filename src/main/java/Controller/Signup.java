@@ -4,7 +4,7 @@
  */
 package Controller;
 
-import java.sql.*;
+import Model.Usuario;
 
 /**
  *
@@ -14,42 +14,32 @@ import java.sql.*;
 //como nao tem requerimento de senha nao existe mais de uma excessao entao o unico modo de falha e se o usuario ja existir
     
 
-public class Signup 
+public class Signup
 {
+    static UsuarioDAO user = new UsuarioDAO();
 
-    public static boolean registrar(String usuario, String senha) 
+    public static boolean registrar(Usuario u) 
     {
-        ConexaoBD bd = new ConexaoBD();
-        Connection conn = bd.getConnection();
-        String inserirSql = "INSERT INTO dados_login (Usu_rg, Usu_senha) VALUES (?, ?)";//
-
-        //verificar conexao com o bd
-        try(PreparedStatement stmt = conn.prepareStatement(inserirSql))
-            
+        
+        if (UsuarioDAO.verificarRG(u.getNome())) 
         {
-            // Verifica se o usuário já existe
-            if (UsuarioDAO.verificarRG(usuario)) 
-            {
-                System.out.println("");//quando o componente visual existir colocar um pop-up com usuario ja existe
-                return false;
-            }
-
-            // Insere novo usuário
-            try (PreparedStatement inserirStmt = conn.prepareStatement(inserirSql)) //usa da parte da logica de cadastro de admin e outros
-            {
-                //pra essa parte provavelmente vai precisar da logica de cadostro de admins?
-                inserirStmt.setString(1, usuario);
-                inserirStmt.setString(2, senha);
-                inserirStmt.executeUpdate();
-                System.out.println("Usuário registrado com sucesso!");//quando o componente visual existir colocar um pop-up com usuario regitrado com sucesso
-                return true;
-            }
-
-        } catch (SQLException e) 
-        {
-            e.printStackTrace();//colocar codigo de erro
+            System.out.println("");//quando o componente visual existir colocar um pop-up com usuario ja existe
             return false;
         }
+        
+        
+
+        try
+        {
+           user.inserir(u);
+           return true;
+            
+        }
+        catch(Exception e)
+                {
+                    e.printStackTrace();
+                    return false;
+                }
     }
 
     
