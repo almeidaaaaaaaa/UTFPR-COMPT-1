@@ -113,7 +113,7 @@ public class EstoqueDAOTest {
         ITable currentTable = currentDataSet.getTable("estoque");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("/Datasets/EstoqueDAOExcluir.xml"));
+                .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
         ITable expectedTable = expectedDataSet.getTable("estoque");
 
         Assertion.assertEquals(expectedTable, currentTable);
