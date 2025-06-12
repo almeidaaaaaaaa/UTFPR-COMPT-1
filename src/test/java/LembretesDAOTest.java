@@ -1,19 +1,20 @@
-import Controller.EventoDAO;
-import Model.Evento;
+
+import Controller.LembretesDAO;
+import Model.Lembretes;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import org.dbunit.Assertion;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
-import org.dbunit.Assertion;
 import org.junit.Before;
 import org.junit.Test;
 
-public class EventoDAOTest {
-
+public class LembretesDAOTest {
+    
     private IDatabaseTester jdt;
 
     @Before
@@ -37,61 +38,50 @@ public class EventoDAOTest {
     }
 
     @Test
-    public void inserir() throws Exception {
-        Evento evento = new Evento(
-            1, 
-            "Palestrante Exemplo", 
-            LocalDateTime.of(2023, 12, 15, 14, 30), 
+    public void testInserir() throws Exception {
+        Lembretes lembrete = new Lembretes(
+            "Recado", 
             LocalDateTime.of(2023, 12, 15, 16, 30), 
-            "Auditório Principal", 
-            50, 
             1
         );
-        EventoDAO.inserir(evento);
+        LembretesDAO.inserir(lembrete);
 
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
-        ITable currentTable = currentDataSet.getTable("evento");
+        ITable currentTable = currentDataSet.getTable("lembrete");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("/Datasets/EventoDAOInserir.xml"));
-        ITable expectedTable = expectedDataSet.getTable("evento");
+                .build(getClass().getResourceAsStream("/Datasets/LembretesDAOInserir.xml"));
+        ITable expectedTable = expectedDataSet.getTable("lembrete");
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
+
      @Test
     public void testAtualizar() throws Exception {
-        Evento evento = new Evento(
-            1, 
-            "Palestrante Exemplo", 
-            LocalDateTime.of(2023, 12, 15, 14, 30), 
+        Lembretes lembrete = new Lembretes(
+            "Recado", 
             LocalDateTime.of(2023, 12, 15, 16, 30), 
-            "Auditório Principal", 
-            50, 
             1
         );
-        EventoDAO.inserir(evento);
+        LembretesDAO.inserir(lembrete);
         
-        Evento eventoA = new Evento(
-            1, // ID do evento a ser atualizado
-            "Novo Palestrante",
-            LocalDateTime.of(2023, 12, 20, 15, 0), // nova data
-            LocalDateTime.of(2023, 12, 20, 17, 0), // novo horário
-            "Novo Local",
-            75, // novas vagas
-            2   // novo tipo
+        Lembretes lembreteA = new Lembretes(
+            "Recado diferente", 
+            LocalDateTime.of(2023, 12, 15, 16, 30), 
+            1
         );
 
         // Chama o método para atualizar
-        EventoDAO.atualizar(eventoA);
+        LembretesDAO.atualizar(lembreteA);
 
         // Verifica se a atualização foi bem sucedida
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
-        ITable currentTable = currentDataSet.getTable("evento");
+        ITable currentTable = currentDataSet.getTable("lembrete");
 
         // Carrega o dataset com o resultado esperado
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("/Datasets/EventoDAOAtualizar.xml"));
-        ITable expectedTable = expectedDataSet.getTable("evento");
+                .build(getClass().getResourceAsStream("/Datasets/LembretesDAOAtualizar.xml"));
+        ITable expectedTable = expectedDataSet.getTable("lembrete");
 
         // Compara o resultado atual com o esperado
         Assertion.assertEquals(expectedTable, currentTable);
@@ -100,27 +90,22 @@ public class EventoDAOTest {
     
     @Test
     public void excluir() throws Exception {
-              Evento evento = new Evento(
-            1, 
-            "Palestrante Exemplo", 
-            LocalDateTime.of(2023, 12, 15, 14, 30), 
+        Lembretes lembrete = new Lembretes(
+            "Recado", 
             LocalDateTime.of(2023, 12, 15, 16, 30), 
-            "Auditório Principal", 
-            50, 
             1
         );
-        EventoDAO.inserir(evento);
+        LembretesDAO.inserir(lembrete);
         
-        EventoDAO.excluir(1);
+        LembretesDAO.excluir(1);
 
         
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
-        ITable currentTable = currentDataSet.getTable("evento");
+        ITable currentTable = currentDataSet.getTable("lembrete");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
                 .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
-        ITable expectedTable = expectedDataSet.getTable("evento");
+        ITable expectedTable = expectedDataSet.getTable("lembrete");
 
         Assertion.assertEquals(expectedTable, currentTable);
-    }
-}
+    }}

@@ -4,5 +4,6 @@
     <administrador />
     <beneficiado />
     <estoque />
-    <evento/>
+    <evento />
+    <lembrete />
 </dataset>

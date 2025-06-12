@@ -1,38 +1,40 @@
 package Model;
 
-public class Lembretes {
-    private String recado;
-    private int data;
-    private String destinatario;
+import java.time.LocalDateTime;
 
-    public Lembretes(String recado, int data, String destinatario) {
+public class Lembretes {
+
+    private int cod;
+    private String recado;
+    private LocalDateTime data;
+
+    public Lembretes(String recado, LocalDateTime data, int cod) {
         this.recado = recado;
         this.data = data;
-        this.destinatario = destinatario;
+        this.cod = cod;
     }
 
     public String getRecado() {
         return recado;
     }
 
+    public int getCod() {
+        return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
+
     public void setRecado(String recado) {
         this.recado = recado;
     }
 
-    public int getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(int data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
-
-    public String getDestinatario() {
-        return destinatario;
-    }
-
-    public void setDestinatario(String destinatario) {
-        this.destinatario = destinatario;
-    }
-    
 }
