@@ -6,4 +6,5 @@
     <estoque />
     <evento />
     <lembrete />
+    <produto/>
 </dataset>

@@ -1,22 +1,28 @@
 package Model;
 
-public class Produto {
-    private int codigo;
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class Produto extends Estoque{
+    private int codigoP;
     private int quantidade;
-    private String nome;
+    private String nomeP;
 
-    public Produto(int codigo, int quantidade, String nome) {
-        this.codigo = codigo;
+    public Produto(int codigoP, int quantidade, String nomeP, int codigo, LocalDateTime dataE2, LocalDateTime dataS, String destino, List<Produto> produtos, int cod, LocalDateTime dataE, String nome, int RG, int cargo, String email, String senha) {
+        super(codigo, dataE2, dataS, destino, produtos, cod, dataE, nome, RG, cargo, email, senha);
+        this.codigoP = codigoP;
         this.quantidade = quantidade;
-        this.nome = nome;
+        this.nomeP = nomeP;
     }
 
-    public int getCodigo() {
-        return codigo;
+
+
+    public int getCodigoP() {
+        return codigoP;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setCodigoP(int codigo) {
+        this.codigoP = codigo;
     }
 
     public int getQuantidade() {
@@ -27,11 +33,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeP() {
+        return nomeP;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeP(String nome) {
+        this.nomeP = nome;
     }
 }
