@@ -40,7 +40,7 @@ public class ProdutoDAO{
                     stmt.setInt(4, p.getCodigoP());
                     stmt.executeUpdate();
                 } catch (SQLException ex) {
-                        throw new RuntimeException("Não foi possível inserir novo produto", ex);
+                        throw new RuntimeException("Não foi possível atualizar produto", ex);
                 }
             } else {
                 throw new RuntimeException("Não foi possível conectar ao banco.");
@@ -59,7 +59,7 @@ public class ProdutoDAO{
            stmt.setInt(1, codigo);
            stmt.executeUpdate();
        }catch (SQLException ex) {
-                    throw new RuntimeException("Não foi possível inserir novo produto", ex);
+                    throw new RuntimeException("Não foi possível excluir produto", ex);
                 }
             } else {
                 throw new RuntimeException("Não foi possível conectar ao banco.");
