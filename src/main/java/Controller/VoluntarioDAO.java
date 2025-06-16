@@ -53,11 +53,14 @@ public class VoluntarioDAO {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
+
                 String sql = "UPDATE voluntario SET Vol_data = ? WHERE Vol_cod = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                     
                     stmt.setTimestamp(1, Timestamp.valueOf(v.getDataE()));
                     stmt.setInt(2, v.getCod());
+
+
                     stmt.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel atualizar Voluntário existente", e);

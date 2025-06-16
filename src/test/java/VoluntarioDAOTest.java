@@ -73,7 +73,7 @@ public class VoluntarioDAOTest {
         ITable currentTable = currentDataSet.getTable("voluntario");
 
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
-                .build(getClass().getResourceAsStream("/Datasets/VoluntarioDAOExcluir.xml"));
+                .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
         ITable expectedTable = expectedDataSet.getTable("voluntario");
 
         Assertion.assertEquals(expectedTable, currentTable);
