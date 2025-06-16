@@ -34,7 +34,7 @@ public class EstoqueDAO{
         }
     }
         
-        public static void Excluir(int cod) throws SQLException {
+        public static void excluir(int cod) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
@@ -54,7 +54,7 @@ public class EstoqueDAO{
         }
     }
         
-        public static void Atualizar(Estoque s) throws SQLException {
+        public static void atualizar(Estoque s) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {

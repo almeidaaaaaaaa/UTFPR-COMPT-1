@@ -106,7 +106,7 @@ public class EstoqueDAOTest {
 
         EstoqueDAO.inserir(estoque);
         
-        EstoqueDAO.Excluir(1);
+        EstoqueDAO.excluir(1);
 
         
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
@@ -150,7 +150,7 @@ public class EstoqueDAOTest {
         
         Estoque e = new Estoque(1, LocalDateTime.of(2025, 6, 10, 12, 0), LocalDateTime.of(2025, 6, 11, 12, 0), "Destino Atualizado", new ArrayList<>(), 10, LocalDateTime.of(2024, 1, 1, 9, 0), "Gabriel", 123456, 1, "gabriel@email.com", "123");
 
-        EstoqueDAO.Atualizar(e);
+        EstoqueDAO.atualizar(e);
 
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
         ITable currentTable = currentDataSet.getTable("estoque");
