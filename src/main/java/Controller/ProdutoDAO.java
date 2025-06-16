@@ -40,7 +40,7 @@ public class ProdutoDAO{
                     stmt.setInt(4, p.getCodigoP());
                     stmt.executeUpdate();
                 } catch (SQLException ex) {
-                        throw new RuntimeException("Não foi possível inserir novo evento", ex);
+                        throw new RuntimeException("Não foi possível inserir novo produto", ex);
                 }
             } else {
                 throw new RuntimeException("Não foi possível conectar ao banco.");
