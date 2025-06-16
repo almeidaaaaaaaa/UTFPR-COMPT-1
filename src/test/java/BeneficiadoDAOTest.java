@@ -52,4 +52,72 @@ public class BeneficiadoDAOTest {
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
+    
+    @Test
+    public void atualizar() throws Exception {
+        Beneficiado b = new Beneficiado(
+            1, 
+            LocalDateTime.of(2025, 6, 4, 10, 0), 
+            "rua tal", 
+            "almeida", 
+            123, 
+            0, 
+            "almeida@email.com", 
+            "123"
+        );
+
+        UsuarioDAO.inserir(b);
+        BeneficiadoDAO.inserir(b);
+
+        Beneficiado atualizado = new Beneficiado(
+            1,
+            LocalDateTime.of(2025, 6, 15, 14, 0),
+            "rua atualizada",
+            "almeida",
+            123,
+            0,
+            "almeida@email.com",
+            "123"
+        );
+
+        BeneficiadoDAO.atualizar(atualizado);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("beneficiado");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/BeneficiadoDAOAtualizar.xml"));
+        ITable expectedTable = expectedDataSet.getTable("beneficiado");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
+    
+    @Test
+    public void excluir() throws Exception {
+        Beneficiado b = new Beneficiado(
+            1, 
+            LocalDateTime.of(2025, 6, 4, 10, 0), 
+            "rua tal", 
+            "almeida", 
+            123, 
+            0, 
+            "almeida@email.com", 
+            "123"
+        );
+
+        UsuarioDAO.inserir(b);
+        BeneficiadoDAO.inserir(b);
+
+        BeneficiadoDAO.excluir(1);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("beneficiado");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
+        ITable expectedTable = expectedDataSet.getTable("beneficiado");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
+
 }
