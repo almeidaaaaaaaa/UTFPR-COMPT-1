@@ -37,4 +37,47 @@ public class BeneficiadoDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
+    
+    public static void atualizar(Beneficiado b) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "UPDATE beneficiado SET Ben_data = ?, Ben_endereco = ? WHERE Ben_cod = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    
+                    stmt.setTimestamp(1, Timestamp.valueOf(b.getDataE()));
+                    stmt.setString(2, b.getEndereco());
+                    
+                    stmt.setInt(3, b.getCod());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel atualizar Beneficiado existente", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
+    
+    public static void excluir(int cod) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "DELETE FROM beneficiado WHERE Ben_cod = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+          
+                    stmt.setInt(1, cod);
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel excluir Beneficiado existente", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
 }

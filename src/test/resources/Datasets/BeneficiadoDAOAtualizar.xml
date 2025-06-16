@@ -1,0 +1,4 @@
+<dataset>
+    <beneficiado Ben_cod="1" Ben_data="2025-06-15 14:00:00" Ben_endereco="rua atualizada" Usuario_Usu_rg="123" />
+    <usuario Usu_rg="123" Usu_nome="almeida" Usu_cargo="0" Usu_email="almeida@email.com"  Usu_senha="123"/>
+</dataset>
