@@ -28,4 +28,45 @@ public class VoluntarioDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
+    
+    public static void excluir(int cod) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "DELETE FROM voluntario WHERE Vol_cod = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setInt(1, cod);
+                    
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel excluir Voluntário existente", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
+    
+    public static void atualizar(Voluntario v) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "UPDATE voluntario SET Vol_cod = ?, Vol_data = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setInt(1, v.getCod());
+                    stmt.setTimestamp(2, Timestamp.valueOf(v.getDataE()));
+                    
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel atualizar Voluntário existente", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
 }

@@ -52,4 +52,69 @@ public class VoluntarioDAOTest {
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
+    
+    @Test
+    public void excluir() throws Exception {
+        Voluntario v = new Voluntario(
+            10,
+            LocalDateTime.of(2024, 1, 1, 9, 0),
+            "Gabriel",
+            123456,
+            1,
+            "gabriel@email.com",
+            "123"
+        );
+
+        Controller.UsuarioDAO.inserir(v);
+        VoluntarioDAO.inserir(v);
+        VoluntarioDAO.excluir(10);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("voluntario");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/VoluntarioDAOExcluir.xml"));
+        ITable expectedTable = expectedDataSet.getTable("voluntario");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
+    
+    
+    @Test
+    public void atualizar() throws Exception {
+        Voluntario v = new Voluntario(
+            10,
+            LocalDateTime.of(2024, 1, 1, 9, 0),
+            "Gabriel",
+            123456,
+            1,
+            "gabriel@email.com",
+            "123"
+        );
+
+        Controller.UsuarioDAO.inserir(v);
+        VoluntarioDAO.inserir(v);
+
+        // Atualização: altera apenas a dataE neste caso
+        Voluntario atualizado = new Voluntario(
+            10,
+            LocalDateTime.of(2025, 6, 16, 12, 0),   // nova dataE
+            "Gabriel",
+            123456,
+            1,
+            "gabriel@email.com",
+            "123"
+        );
+
+        VoluntarioDAO.atualizar(atualizado);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("voluntario");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/VoluntarioDAOAtualizar.xml"));
+        ITable expectedTable = expectedDataSet.getTable("voluntario");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
 }
