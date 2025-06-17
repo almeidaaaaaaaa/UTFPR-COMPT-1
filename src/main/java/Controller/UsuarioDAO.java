@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsuarioDAO 
-{
+public class UsuarioDAO {
+
     public static boolean verificarRG(int rg) {
         ConexaoBD bd = new ConexaoBD();
         Connection conn = bd.getConnection();
@@ -63,6 +63,52 @@ public class UsuarioDAO
                     stmt.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo usuário", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
+
+    public static void excluir(int rg) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "DELETE FROM usuario WHERE Usu_rg = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setInt(1, rg);
+
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel excluir Usuario existente", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+    }
+
+    public static void atualizar(Usuario u) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+
+                String sql = "UPDATE usuario SET Usu_nome = ?, Usu_cargo = ?, Usu_email = ?, Usu_senha = ? WHERE Usu_rg = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                    stmt.setString(1, u.getNome());
+                    stmt.setInt(2, u.getCargo());
+                    stmt.setString(3, u.getEmail());
+                    stmt.setString(4, u.getSenha());
+                    stmt.setInt(5, u.getRG());
+
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel atualizar Usuario existente", e);
                 }
             } else {
                 throw new RuntimeException("Nao foi possivel conectar ao banco.");

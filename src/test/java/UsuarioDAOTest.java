@@ -83,4 +83,42 @@ public class UsuarioDAOTest {
         assertFalse(usuarioInexistente);
     }
 
+    @Test
+    public void excluir() throws Exception {
+        Usuario u = new Usuario("gabriel", 123, 1, "email.com", "123");
+
+        UsuarioDAO.inserir(u);
+        UsuarioDAO.excluir(123);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("usuario");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
+        ITable expectedTable = expectedDataSet.getTable("usuario");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
+
+    @Test
+    public void atualizar() throws Exception {
+        Usuario u = new Usuario("gabriel", 123, 1, "email.com", "123");
+
+        UsuarioDAO.inserir(u);
+
+        // Atualização: altera apenas a dataE neste caso
+        Usuario uAtualizado = new Usuario("almeida", 123, 1, "123email.com", "123");
+
+        UsuarioDAO.atualizar(uAtualizado);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("usuario");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/UsuarioDAOAtualizar.xml"));
+        ITable expectedTable = expectedDataSet.getTable("usuario");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
+
 }
