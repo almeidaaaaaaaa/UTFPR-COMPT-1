@@ -15,6 +15,8 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.dbunit.Assertion;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,7 +47,7 @@ public class ProdutoDAOTest {
     @Test
     public void inserir() throws Exception {
         List<Model.Produto> produtos = new ArrayList<>();
-           
+
         Produto produto = new Produto(
                 1,
                 10,
@@ -63,28 +65,27 @@ public class ProdutoDAOTest {
                 "gabriel@email.com", // Usuario_email
                 "123"
         );
-        
+
         UsuarioDAO.inserir(produto);
         VoluntarioDAO.inserir(produto);
         EstoqueDAO.inserir(produto);
         ProdutoDAO.inserir(produto);
-        
-    IDataSet currentDataSet = jdt.getConnection().createDataSet();
-    ITable currentTable = currentDataSet.getTable("produto");
 
-    IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
-            .build(getClass().getResourceAsStream("/Datasets/ProdutoDAOInserir.xml"));
-    ITable expectedTable = expectedDataSet.getTable("produto");
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("produto");
 
-    Assertion.assertEquals (expectedTable, currentTable);
-}
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/ProdutoDAOInserir.xml"));
+        ITable expectedTable = expectedDataSet.getTable("produto");
 
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
 
-     @Test
+    @Test
     public void testAtualizar() throws Exception {
         List<Model.Produto> produtos = new ArrayList<>();
-        
-         Produto produto = new Produto(
+
+        Produto produto = new Produto(
                 1,
                 10,
                 "Produto Teste",
@@ -101,12 +102,12 @@ public class ProdutoDAOTest {
                 "gabriel@email.com", // Usuario_email
                 "123"
         );
-         
+
         UsuarioDAO.inserir(produto);
         VoluntarioDAO.inserir(produto);
         EstoqueDAO.inserir(produto);
         ProdutoDAO.inserir(produto);
-        
+
         Produto produtoA = new Produto(
                 1,
                 20,
@@ -140,11 +141,11 @@ public class ProdutoDAOTest {
         // Compara o resultado atual com o esperado
         Assertion.assertEquals(expectedTable, currentTable);
     }
-    
-   @Test
+
+    @Test
     public void excluir() throws Exception {
         List<Model.Produto> produtos = new ArrayList<>();
-           
+
         Produto produto = new Produto(
                 1,
                 10,
@@ -162,14 +163,14 @@ public class ProdutoDAOTest {
                 "gabriel@email.com", // Usuario_email
                 "123"
         );
-        
+
         UsuarioDAO.inserir(produto);
         VoluntarioDAO.inserir(produto);
         EstoqueDAO.inserir(produto);
         ProdutoDAO.inserir(produto);
 
         ProdutoDAO.excluir(1);
-        
+
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
         ITable currentTable = currentDataSet.getTable("produto");
 
@@ -179,4 +180,35 @@ public class ProdutoDAOTest {
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
+    
+    
+    @Test
+public void buscarP() throws Exception {
+
+    // Carrega o dataset XML com produto, estoque, voluntario e usuario
+    IDataSet dataSet = new FlatXmlDataSetBuilder()
+            .build(getClass().getResourceAsStream("/Datasets/ProdutoDAOBuscarP.xml"));
+    DatabaseOperation.CLEAN_INSERT.execute(jdt.getConnection(), dataSet);
+
+    ProdutoDAO dao = new ProdutoDAO();
+    List<Object[]> produtos = dao.buscarP();
+
+    // Esperado conforme o dataset.xml que você fez acima
+    Object[][] esperado = {
+        {1, 10, "Produto Teste", 1},
+        {2, 10, "Produto teste 2", 1}
+    };
+
+    assertEquals("Quantidade de produtos retornados incorreta", esperado.length, produtos.size());
+
+    for (int i = 0; i < esperado.length; i++) {
+        assertEquals("ID incorreto no índice " + i, esperado[i][0], produtos.get(i)[0]);
+        assertEquals("Quantidade incorreta no índice " + i, esperado[i][1], produtos.get(i)[1]);
+        assertEquals("Nome incorreto no índice " + i, esperado[i][2], produtos.get(i)[2]);
+        assertEquals("Código do estoque incorreto no índice " + i, esperado[i][3], produtos.get(i)[3]);
+    }
+}
+
+
+
 }

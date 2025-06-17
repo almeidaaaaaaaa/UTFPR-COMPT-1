@@ -3,7 +3,10 @@ package Controller;
 import Model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoDAO{
 
@@ -68,4 +71,38 @@ public class ProdutoDAO{
             throw new RuntimeException("Não foi possível conectar ao banco", ex);
         }
    }
+   
+       
+    public List<Object[]>buscarP() throws SQLException {
+        List<Object[]> pro = new ArrayList<>();
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+
+                String sql = "SELECT Pro_id, Pro_quantidade, Pro_nome, Estoque_Est_cod FROM produto";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    
+                    ResultSet rs = stmt.executeQuery();
+                    
+                    while(rs.next()){
+                        int id = rs.getInt("Pro_id");
+                        int qt = rs.getInt("Pro_quantidade");
+                        String nome = rs.getString("Pro_nome"); 
+                        
+                        int cod = rs.getInt("Estoque_Est_cod");
+                        
+                        pro.add(new Object[]{id, qt, nome, cod});
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel listar produtos", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+        return pro;
+    }    
+    
 }
