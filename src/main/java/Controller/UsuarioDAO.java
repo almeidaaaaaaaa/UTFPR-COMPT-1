@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO {
 
@@ -117,4 +119,36 @@ public class UsuarioDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }    
+    
+    public List<Object[]>buscarU() throws SQLException {
+        List<Object[]> usu = new ArrayList<>();
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+
+                String sql = "SELECT Usu_rg, Usu_nome, Usu_cargo, Usu_email FROM usuario";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    
+                    ResultSet rs = stmt.executeQuery();
+                    
+                    while(rs.next()){
+                        int id = rs.getInt("Usu_rg");
+                        String nome = rs.getString("Usu_nome"); 
+                        int cg = rs.getInt("Usu_cargo");
+                        String em = rs.getString("Usu_email");
+                        
+                        usu.add(new Object[]{nome, id, cg, em});
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possivel listar usuarios", e);
+                }
+            } else {
+                throw new RuntimeException("Nao foi possivel conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nao foi possivel conectar ao banco", e);
+        }
+        return usu;
+    }    
+    
 }
