@@ -1,0 +1,5 @@
+<dataset>
+    <administrador Adm_idMestre="0" Usuario_Usu_rg="123" Adm_cod="1" />
+    <usuario Usu_rg="123" Usu_nome="Gabriel" Usu_cargo="1" Usu_email="gabriel@email.com" Usu_senha="123"/>
+</dataset>
+

@@ -51,4 +51,46 @@ public class AdminDAOTest {
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
+    
+    @Test
+    public void excluir() throws Exception {
+        Admin a = new Admin(1, 1, "joao", 123, 0, "joao@email.com", "123");
+
+        UsuarioDAO.inserir(a);
+        AdminDAO.inserir(a);
+
+        AdminDAO.excluir(1);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("administrador");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
+        ITable expectedTable = expectedDataSet.getTable("administrador");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }
+    
+    
+    @Test
+    public void atualizar() throws Exception {
+        Admin a = new Admin(1, 1, "joao", 123, 0, "joao@email.com", "123");
+
+        UsuarioDAO.inserir(a);
+        AdminDAO.inserir(a);
+
+
+        Admin aAtualizado = new Admin(0, 1, "joao", 123, 0, "joao@email.com", "123");
+
+        AdminDAO.atualizar(aAtualizado);
+
+        IDataSet currentDataSet = jdt.getConnection().createDataSet();
+        ITable currentTable = currentDataSet.getTable("administrador");
+
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/AdminDAOAtualizar.xml"));
+        ITable expectedTable = expectedDataSet.getTable("administrador");
+
+        Assertion.assertEquals(expectedTable, currentTable);
+    }    
 }
