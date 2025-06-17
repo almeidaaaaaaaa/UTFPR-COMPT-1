@@ -116,5 +116,5 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
-    }
+    }    
 }
