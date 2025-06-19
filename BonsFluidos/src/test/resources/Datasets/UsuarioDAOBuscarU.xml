@@ -1,0 +1,4 @@
+<dataset>
+    <usuario Usu_rg="111" Usu_nome="Carlos" Usu_cargo="1" Usu_email="carlos@email.com" Usu_senha="123"/>
+    <usuario Usu_rg="222" Usu_nome="Joana" Usu_cargo="2" Usu_email="joana@email.com" Usu_senha="456"/>
+</dataset>
