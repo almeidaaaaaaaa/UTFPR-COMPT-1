@@ -1,17 +1,139 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <form method="POST" action="http://localhost:8080/BonsFluidos/api/usuario">
-            <input type="text" name="rg" placeholder="RG">
-            <input type="text" name="nome" placeholder="Nome">
-            <input type="text" name="cargo" placeholder="Cargo">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="senha" placeholder="Senha">
-            <button type="submit">Cadastrar</button>
-        </form>
-    </body>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bons Fluidos - Combate à Pobreza Menstrual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="logo">
+    <nav>
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="quem-somos.html" class="nav-link">Quem Somos</a>
+      <a href="galeria.html" class="nav-link">Galeria</a>
+      <a href="contato.html" class="nav-link">Contato</a>
+      <a href="produtos.html" class="nav-link">Produtos</a>
+      <a href="buscar-usuarios.html" class="nav-link active">Buscar Usuários</a>
+      <a href="login.html" class="nav-link">Login</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero full-width-section">
+    <h1>Bons Fluidos</h1>
+    <h2>Combatendo a pobreza menstrual</h2>
+    <p class="hero-subtitle">Dignidade para ser mulher!</p>
+  </section>
+
+  <!-- Destaques -->
+  <section class="destaques full-width-section">
+    <div class="container">
+      <div class="destaque-card">
+        <h3>1781</h3>
+        <p>Meninas assistidas</p>
+      </div>
+      <div class="destaque-card">
+        <h3>Escolas Públicas</h3>
+        <p>de Cornélio Procópio</p>
+      </div>
+      <div class="destaque-card">
+        <h3>UTFPR-CP</h3>
+        <p>Projeto universitário</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quem Somos Preview -->
+  <section class="quem-somos-preview full-width-section">
+    <div class="container">
+      <h2>Quem Somos</h2>
+      <div class="content-wrapper">
+        <div class="text-content">
+          <p>O projeto tem como público alvo meninas de escolas públicas de Cornélio Procópio que ofertam anos finais do ensino fundamental e ensino médio.</p>
+          <p>A equipe é formada por alunos dos diferentes cursos de graduação da UTFPR-CP que auxiliarão na realização de palestras sobre Pobreza Menstrual e arrecadação e distribuição gratuita de produtos de higiene menstrual sustentáveis.</p>
+          <a href="quem-somos.html" class="btn">Saiba mais</a>
+        </div>
+        <div class="image-content">
+          <img src="figs/equipe.jpg" alt="Equipe Bons Fluidos">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipe -->
+  <section class="equipe full-width-section">
+    <div class="container">
+      <h2>Nossa Equipe</h2>
+      <div class="equipe-grid">
+        <div class="membro">
+          <h3>Katus Romero Felizardo</h3>
+        </div>
+        <div class="membro">
+          <h3>Sênis M. Rodrigues</h3>
+        </div>
+        <div class="membro">
+          <h3>Erica Ferreira de Souza</h3>
+        </div>
+        <div class="membro">
+          <h3>Algira A. B. D. A. Costa</h3>
+        </div>
+        <div class="membro">
+          <h3>Ligia C. Biscussart</h3>
+        </div>
+        <div class="membro">
+          <h3>Tatiana A. Martins</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria Preview -->
+  <section class="galeria-preview full-width-section">
+    <div class="container">
+      <h2>Nosso Público</h2>
+      <div class="galeria-grid">
+        <img src="figs/galeria1.jpg" alt="Atividades do projeto">
+        <img src="figs/galeria2.jpg" alt="Distribuição de produtos">
+        <img src="figs/galeria3.jpg" alt="Palestras educativas">
+      </div>
+      <a href="galeria.html" class="btn">Ver galeria completa</a>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="contato full-width-section">
+    <div class="container">
+      <h2>Entre em Contato</h2>
+      <div class="contato-info">
+        <div class="info-item">
+          <h3>Localização</h3>
+          <p>Av. Alberto Carazzai, 1640 - Centro<br>
+          Cornélio Procópio - PR, 86300-000</p>
+        </div>
+        <div class="info-item">
+          <h3>Contatos</h3>
+          <p>(43) 9999-9999<br>
+          @bonsfluidos<br>
+          katlascannavino@utfpr.edu.br</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="full-width-section">
+    <div class="container">
+      <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo">
+      <p>Combate à pobreza menstrual: Dignidade para ser mulher!</p>
+      <p>&copy; 2023 Bons Fluidos - UTFPR Cornélio Procópio</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>

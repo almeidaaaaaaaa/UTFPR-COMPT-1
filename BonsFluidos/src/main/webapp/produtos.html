@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bons Fluidos - Gerenciar Produtos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <img src="figs/logosemfundo.png" alt="Logo" class="logo">
+    <nav>
+      <a href="index.html" class="nav-link">Início</a>
+      <a href="quem-somos.html" class="nav-link">Quem Somos</a>
+      <a href="galeria.html" class="nav-link">Galeria</a>
+      <a href="contato.html" class="nav-link">Contato</a>
+      <a href="produtos.html" class="nav-link active">Produtos</a>
+      <a href="buscar-usuarios.html" class="nav-link">Buscar Usuários</a>
+      <a href="login.html" class="nav-link">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Gerenciar Produtos</h1>
+    
+    <div class="product-actions">
+      <button id="add-product-btn" class="btn">Adicionar Produto</button>
+      <div class="product-stats">
+        <div class="stat-card">
+          <h3>Total em Estoque</h3>
+          <p id="total-stock">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Produtos Doados</h3>
+          <p id="total-donated">0</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="products-grid">
+      <!-- Produtos serão inseridos via JavaScript -->
+    </div>
+    
+    <!-- Modal para adicionar/editar produto -->
+    <div id="product-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title">Adicionar Novo Produto</h2>
+        
+        <form id="product-form">
+          <input type="hidden" id="product-id">
+          
+          <div class="form-group">
+            <label for="product-name">Nome do Produto</label>
+            <input type="text" id="product-name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="product-type">Tipo de Produto</label>
+            <select id="product-type" required>
+              <option value="">Selecione...</option>
+              <option value="absorvente">Absorvente</option>
+              <option value="coletor">Coletor Menstrual</option>
+              <option value="calcinha">Calcinha Absorvente</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="product-quantity">Quantidade</label>
+              <input type="number" id="product-quantity" min="1" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="product-unit">Unidade</label>
+              <select id="product-unit" required>
+                <option value="unidade">Unidades</option>
+                <option value="pacote">Pacotes</option>
+                <option value="caixa">Caixas</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="product-description">Descrição</label>
+            <textarea id="product-description" rows="3"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="product-image">Imagem do Produto</label>
+            <input type="file" id="product-image" accept="image/*">
+          </div>
+          
+          <button type="submit" class="btn">Salvar Produto</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="full-width-section">
+    <div class="container">
+      <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo">
+      <p>Combate à pobreza menstrual: Dignidade para ser mulher!</p>
+      <p>&copy; 2023 Bons Fluidos - UTFPR Cornélio Procópio</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
