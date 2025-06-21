@@ -1,4 +1,5 @@
 Controller\EventoDAO.class
+Controller\BeneficiadoController.class
 Controller\BeneficiadoDAO.class
 Controller\Signup.class
 Controller\AdminDAO.class
@@ -12,9 +13,11 @@ Controller\LembretesDAO.class
 Model\Lembretes.class
 Model\Estoque.class
 Controller\ProdutoDAO.class
+Controller\LoginController.class
 Model\Admin.class
 Model\Evento.class
 com\mycompany\bonsfluidos\resources\JavaEE8Resource.class
 Model\Voluntario.class
+Controller\VoluntarioController.class
 Controller\UsuarioDAO.class
 Controller\VoluntarioDAO.class

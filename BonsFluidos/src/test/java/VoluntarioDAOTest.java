@@ -39,7 +39,7 @@ public class VoluntarioDAOTest {
 
     @Test
     public void inserir() throws Exception {
-        Voluntario v = new Voluntario(1, LocalDateTime.of(2025, 6, 4, 10, 0), "pacheco", 2, 0, "pachec@email.com", "123");
+        Voluntario v = new Voluntario(LocalDateTime.of(2025, 6, 4, 10, 0), "pacheco", 2, 0, "pachec@email.com", "123");
         UsuarioDAO.inserir(v);
         VoluntarioDAO.inserir(v);
 
@@ -50,13 +50,12 @@ public class VoluntarioDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/VoluntarioDAOInserir.xml"));
         ITable expectedTable = expectedDataSet.getTable("voluntario");
 
-        Assertion.assertEquals(expectedTable, currentTable);
+        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, new String[] {"Vol_cod"});
     }
     
     @Test
     public void excluir() throws Exception {
         Voluntario v = new Voluntario(
-            10,
             LocalDateTime.of(2024, 1, 1, 9, 0),
             "Gabriel",
             123456,
@@ -67,7 +66,7 @@ public class VoluntarioDAOTest {
 
         Controller.UsuarioDAO.inserir(v);
         VoluntarioDAO.inserir(v);
-        VoluntarioDAO.excluir(10);
+        VoluntarioDAO.excluir(v.getCod());
 
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
         ITable currentTable = currentDataSet.getTable("voluntario");
@@ -76,14 +75,13 @@ public class VoluntarioDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
         ITable expectedTable = expectedDataSet.getTable("voluntario");
 
-        Assertion.assertEquals(expectedTable, currentTable);
+        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, new String[] {"Vol_cod"});
     }
     
     
     @Test
     public void atualizar() throws Exception {
         Voluntario v = new Voluntario(
-            10,
             LocalDateTime.of(2024, 1, 1, 9, 0),
             "Gabriel",
             123456,
@@ -97,7 +95,6 @@ public class VoluntarioDAOTest {
 
         // Atualização: altera apenas a dataE neste caso
         Voluntario atualizado = new Voluntario(
-            10,
             LocalDateTime.of(2025, 6, 16, 12, 0),   // nova dataE
             "Gabriel",
             123456,
@@ -105,7 +102,8 @@ public class VoluntarioDAOTest {
             "gabriel@email.com",
             "123"
         );
-
+        atualizado.setCod(v.getCod());
+        
         VoluntarioDAO.atualizar(atualizado);
 
         IDataSet currentDataSet = jdt.getConnection().createDataSet();
@@ -115,6 +113,6 @@ public class VoluntarioDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/VoluntarioDAOAtualizar.xml"));
         ITable expectedTable = expectedDataSet.getTable("voluntario");
 
-        Assertion.assertEquals(expectedTable, currentTable);
+        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, new String[] {"Vol_cod"});
     }
 }

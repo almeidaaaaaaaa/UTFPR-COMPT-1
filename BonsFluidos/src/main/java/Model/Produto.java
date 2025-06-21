@@ -8,8 +8,8 @@ public class Produto extends Estoque{
     private int quantidade;
     private String nomeP;
 
-    public Produto(int codigoP, int quantidade, String nomeP, int codigo, LocalDateTime dataE2, LocalDateTime dataS, String destino, List<Produto> produtos, int cod, LocalDateTime dataE, String nome, int rg, int cargo, String email, String senha) {
-        super(codigo, dataE2, dataS, destino, produtos, cod, dataE, nome, rg, cargo, email, senha);
+    public Produto(int codigoP, int quantidade, String nomeP, int codigo, LocalDateTime dataE2, LocalDateTime dataS, String destino, List<Produto> produtos, LocalDateTime dataE, String nome, int rg, int cargo, String email, String senha) {
+        super(codigo, dataE2, dataS, destino, produtos, dataE, nome, rg, cargo, email, senha);
         this.codigoP = codigoP;
         this.quantidade = quantidade;
         this.nomeP = nomeP;

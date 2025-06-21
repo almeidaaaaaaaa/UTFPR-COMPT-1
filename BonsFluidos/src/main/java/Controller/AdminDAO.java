@@ -77,4 +77,41 @@ public class AdminDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
+
+    public static Admin buscarPorRG(int rg) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            if (conn != null) {
+                String sql = "SELECT Adm_idMestre, Adm_cod, Usu_nome, Usuario_Usu_rg, Usu_cargo, Usu_email, Usu_senha "
+                        + "FROM administrador "
+                        + "JOIN usuario ON administrador.Usuario_Usu_rg = usuario.Usu_rg "
+                        + "WHERE Usuario_Usu_rg = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setInt(1, rg);
+                    try (java.sql.ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            int idMestre = rs.getInt("Adm_idMestre");
+                            int cod = rs.getInt("Adm_cod");
+                            String nome = rs.getString("Usu_nome");
+                            int RG = rs.getInt("Usuario_Usu_rg");
+                            int cargo = rs.getInt("Usu_cargo");
+                            String email = rs.getString("Usu_email");
+                            String senha = rs.getString("Usu_senha");
+
+                            return new Admin(idMestre, cod, nome, RG, cargo, email, senha);
+                        } else {
+                            return null;
+                        }
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException("Não foi possível buscar o Administrador pelo RG", e);
+                }
+            } else {
+                throw new RuntimeException("Não foi possível conectar ao banco.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Não foi possível conectar ao banco", e);
+        }
+    }
+
 }

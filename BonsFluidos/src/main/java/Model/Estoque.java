@@ -11,8 +11,8 @@ public class Estoque extends Voluntario{
     private String destino;
     private final List<Produto> produtos;
 
-    public Estoque(int codigo, LocalDateTime dataE2, LocalDateTime dataS, String destino, List<Produto> produtos, int cod, LocalDateTime dataE, String nome, int RG, int cargo, String email, String senha) {
-        super(cod,  dataE, nome, RG, cargo, email, senha);
+    public Estoque(int codigo, LocalDateTime dataE2, LocalDateTime dataS, String destino, List<Produto> produtos, LocalDateTime dataE, String nome, int RG, int cargo, String email, String senha) {
+        super(dataE, nome, RG, cargo, email, senha);
         this.codigo = codigo;
         this.dataE2 = dataE2;
         this.dataS = dataS;

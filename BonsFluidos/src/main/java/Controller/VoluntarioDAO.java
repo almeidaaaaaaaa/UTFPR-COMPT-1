@@ -3,7 +3,9 @@ package Controller;
 import Model.Voluntario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 public class VoluntarioDAO {
@@ -12,12 +14,16 @@ public class VoluntarioDAO {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
-                String sql = "INSERT INTO voluntario(Vol_cod, Vol_data, Usuario_Usu_rg) VALUES (?, ?, ?)";
-                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setInt(1, v.getCod());
-                    stmt.setTimestamp(2, Timestamp.valueOf(v.getDataE()));
-                    stmt.setInt(3, v.getRG());
+                String sql = "INSERT INTO voluntario(Vol_data, Usuario_Usu_rg) VALUES (?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                    stmt.setTimestamp(1, Timestamp.valueOf(v.getDataE()));
+                    stmt.setInt(2, v.getRG());
                     stmt.executeUpdate();
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        v.setCod(rs.getInt(1)); 
+                    }
+                }
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo Voluntário", e);
                 }
