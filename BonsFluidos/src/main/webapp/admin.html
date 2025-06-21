@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bons Fluidos - Área Administrativa</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="adminstyle.css">
 </head>
 <body>
   <header class="navbar">
@@ -15,91 +15,70 @@
       <a href="quem-somos.html" class="nav-link">Quem Somos</a>
       <a href="galeria.html" class="nav-link">Galeria</a>
       <a href="contato.html" class="nav-link">Contato</a>
-      <a href="produtos.html" class="nav-link active">Produtos</a>
+      <a href="produtos.html" class="nav-link">Produtos</a>
       <a href="buscar-usuarios.html" class="nav-link">Buscar Usuários</a>
       <a href="login.html" class="nav-link">Login</a>
     </nav>
+    <div class="admin-badge">Administrador</div>
   </header>
 
   <main class="container">
     <h1 class="page-title">Administração de Produtos</h1>
 
-    <div class="product-actions" style="justify-content: center;">
-        <button type="submit" class="btn">Atualizar Estoque</button>
-    </div>
-
-
+    <div class="product-actions">
+      <button id="btn-add-product" class="btn">Adicionar Produto</button>
     </div>
 
     <div class="products-grid">
-      <!-- Produtos renderizados via JS -->
+      <!-- Produtos serão renderizados via JavaScript -->
     </div>
 
     <!-- Modal para adicionar/editar produto -->
-    <div id="product-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2 id="modal-title">Adicionar Estoque</h2>
+    <!-- Modal para adicionar/editar produto -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 id="modal-title">Adicionar Produto</h2>
 
-        <form id="product-form">
-          <input type="hidden" id="product-id">
+    <form id="product-form">
+      <input type="hidden" id="product-id">
 
-          <div class="form-group">
-            <label for="product-name">Nome do Produto</label>
-            <input type="text" id="product-name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="product-type">Tipo de Produto</label>
-            <select id="product-type" required>
-              <option value="">Selecione...</option>
-              <option value="absorvente">Absorvente</option>
-              <option value="coletor">Coletor Menstrual</option>
-              <option value="calcinha">Calcinha Absorvente</option>
-              <option value="outro">Outro</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="product-quantity">Quantidade</label>
-              <input type="number" id="product-quantity" min="1" required>
-            </div>
-
-            <div class="form-group">
-              <label for="product-unit">Unidade</label>
-              <select id="product-unit" required>
-                <option value="unidade">Unidades</option>
-                <option value="pacote">Pacotes</option>
-                <option value="caixa">Caixas</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="product-description">Descrição</label>
-            <textarea id="product-description" rows="3"></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="product-image">Imagem do Produto</label>
-            <input type="file" id="product-image" accept="image/*">
-          </div>
-
-          <button type="submit" class="btn">Salvar Estoque</button>
-        </form>
+      <div class="form-group">
+        <label for="product-name">Nome do Produto</label>
+        <input type="text" id="product-name" required>
       </div>
-    </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="product-quantity">Quantidade</label>
+          <input type="number" id="product-quantity" min="1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="product-destination">Destino</label>
+          <input type="text" id="product-destination" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="product-rg">RG</label>
+        <input type="text" id="product-rg" required>
+      </div>
+
+      <button type="submit" class="btn">Salvar Produto</button>
+    </form>
+  </div>
+</div>
   </main>
 
   <footer class="full-width-section">
     <div class="container">
       <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo">
       <p>Combate à pobreza menstrual: Dignidade para ser mulher!</p>
-      <p>&copy; 2023 Bons Fluidos - UTFPR Cornélio Procópio</p>
+      <p>&copy; 2025 Bons Fluidos - UTFPR Cornélio Procópio</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="adminscript.js"></script>
 </body>
 </html>
