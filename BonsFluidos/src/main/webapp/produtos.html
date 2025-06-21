@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bons Fluidos - Gerenciar Produtos</title>
+  <title>Bons Fluidos - Produtos</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -22,80 +23,10 @@
   </header>
 
   <main class="container">
-    <h1 class="page-title">Gerenciar Produtos</h1>
-    
-    <div class="product-actions">
-      <button id="add-product-btn" class="btn">Adicionar Produto</button>
-      <div class="product-stats">
-        <div class="stat-card">
-          <h3>Total em Estoque</h3>
-          <p id="total-stock">0</p>
-        </div>
-        <div class="stat-card">
-          <h3>Produtos Doados</h3>
-          <p id="total-donated">0</p>
-        </div>
-      </div>
-    </div>
-    
+    <h1 class="page-title">Produtos Disponíveis</h1>
+
     <div class="products-grid">
-      <!-- Produtos serão inseridos via JavaScript -->
-    </div>
-    
-    <!-- Modal para adicionar/editar produto -->
-    <div id="product-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2 id="modal-title">Adicionar Novo Produto</h2>
-        
-        <form id="product-form">
-          <input type="hidden" id="product-id">
-          
-          <div class="form-group">
-            <label for="product-name">Nome do Produto</label>
-            <input type="text" id="product-name" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="product-type">Tipo de Produto</label>
-            <select id="product-type" required>
-              <option value="">Selecione...</option>
-              <option value="absorvente">Absorvente</option>
-              <option value="coletor">Coletor Menstrual</option>
-              <option value="calcinha">Calcinha Absorvente</option>
-              <option value="outro">Outro</option>
-            </select>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="product-quantity">Quantidade</label>
-              <input type="number" id="product-quantity" min="1" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="product-unit">Unidade</label>
-              <select id="product-unit" required>
-                <option value="unidade">Unidades</option>
-                <option value="pacote">Pacotes</option>
-                <option value="caixa">Caixas</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="product-description">Descrição</label>
-            <textarea id="product-description" rows="3"></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label for="product-image">Imagem do Produto</label>
-            <input type="file" id="product-image" accept="image/*">
-          </div>
-          
-          <button type="submit" class="btn">Salvar Produto</button>
-        </form>
-      </div>
+      <!-- Produtos renderizados via JS -->
     </div>
   </main>
 
@@ -107,6 +38,68 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const mockProducts = [
+        {
+          id: 1,
+          nome: "Absorvente Higiênico",
+          tipo: "absorvente",
+          quantidade: 150,
+          unidade: "unidade",
+          descricao: "Absorvente descartável noturno",
+          imagem: "figs/absorv.webp"
+        },
+        {
+          id: 2,
+          nome: "Coletor Menstrual",
+          tipo: "coletor",
+          quantidade: 30,
+          unidade: "unidade",
+          descricao: "Coletor reutilizável tamanho P",
+          imagem: "figs/coletor-menstrual.png"
+        },
+        {
+          id: 3,
+          nome: "Kit Higiene",
+          tipo: "outro",
+          quantidade: 25,
+          unidade: "pacote",
+          descricao: "Kit contendo absorventes e lenços umedecidos",
+          imagem: "figs/kit.jpg"
+        }
+      ];
+
+      const productsGrid = document.querySelector('.products-grid');
+
+      function getProductTypeName(type) {
+        const types = {
+          'absorvente': 'Absorvente',
+          'coletor': 'Coletor Menstrual',
+          'calcinha': 'Calcinha Absorvente',
+          'outro': 'Outro'
+        };
+        return types[type] || type;
+      }
+
+      mockProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.imagem}" alt="${product.nome}" class="product-image">
+          <div class="product-info">
+            <h3 class="product-name">${product.nome}</h3>
+            <span class="product-type">${getProductTypeName(product.tipo)}</span>
+            <p class="product-description">${product.descricao}</p>
+            <div class="product-stock">
+              <span>Disponível:</span>
+              <strong>${product.quantidade} ${product.unidade}</strong>
+            </div>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+      });
+    });
+  </script>
 </body>
 </html>
