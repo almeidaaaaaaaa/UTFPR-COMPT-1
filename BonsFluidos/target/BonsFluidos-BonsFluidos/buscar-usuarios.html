@@ -1,88 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bons Fluidos - Buscar Usuários</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="navbar">
-    <img src="figs/logosemfundo.png" alt="Logo" class="logo">
-    <nav>
-      <a href="index.html" class="nav-link">Início</a>
-      <a href="quem-somos.html" class="nav-link">Quem Somos</a>
-      <a href="galeria.html" class="nav-link">Galeria</a>
-      <a href="contato.html" class="nav-link">Contato</a>
-      <a href="produtos.html" class="nav-link">Produtos</a>
-      <a href="buscar-usuarios.html" class="nav-link active">Buscar Usuários</a>
-      <a href="login.html" class="nav-link">Login</a>
-    </nav>
-  </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bons Fluidos - Buscar Usuários</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="navbar">
+            <img src="figs/logosemfundo.png" alt="Logo" class="logo">
+            <nav>
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="quem-somos.html" class="nav-link">Quem Somos</a>
+                <a href="galeria.html" class="nav-link">Galeria</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+                <a href="produtos.html" class="nav-link">Produtos</a>
+                <a href="buscar-usuarios.html" class="nav-link active">Buscar Usuários</a>
+                <a href="login.html" class="nav-link">Login</a>
+            </nav>
+        </header>
 
-  <main class="container">
-    <h1 class="page-title">Buscar Usuários</h1>
-    
-    <div class="search-container">
-      <div class="search-box">
-        <input type="text" id="search-input" placeholder="Digite nome, e-mail ou tipo de usuário...">
-        <button id="search-btn" class="btn">Buscar</button>
-      </div>
-      
-      <div class="filters">
-        <select id="user-type-filter" class="filter-select">
-          <option value="all">Todos os tipos</option>
-          <option value="voluntario">Voluntários</option>
-          <option value="beneficiado">Beneficiados</option>
-        </select>
-        
-        <select id="status-filter" class="filter-select">
-          <option value="all">Todos os status</option>
-          <option value="ativo">Ativos</option>
-          <option value="inativo">Inativos</option>
-        </select>
-      </div>
-    </div>
-    
-    <div class="results-container">
-      <div class="results-header">
-        <h2>Resultados da Busca</h2>
-        <span id="results-count">0 usuários encontrados</span>
-      </div>
-      
-      <table class="users-table">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Tipo</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody id="users-results">
-          <!-- Dados serão inseridos via JavaScript -->
-        </tbody>
-      </table>
-      
-      <div class="pagination">
-        <button class="pagination-btn" disabled>Anterior</button>
-        <span class="page-info">Página 1 de 1</span>
-        <button class="pagination-btn" disabled>Próxima</button>
-      </div>
-    </div>
-  </main>
+        <main class="container">
+            <h1 class="page-title">Buscar Usuários</h1>
 
-  <footer class="full-width-section">
-    <div class="container">
-      <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo">
-      <p>Combate à pobreza menstrual: Dignidade para ser mulher!</p>
-      <p>&copy; 2023 Bons Fluidos - UTFPR Cornélio Procópio</p>
-    </div>
-  </footer>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Digite o nome do usuário...">
+                    <button id="search-btn" class="btn">Buscar</button>
+                </div>
 
-  <script src="script.js"></script>
-</body>
+                <div class="filters">
+                    <select id="user-type-filter" class="filter-select">
+                        <option value="all">Todos os tipos</option>
+                        <option value="beneficiado">Beneficiados</option>
+                        <option value="voluntario">Voluntários</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div class="results-header">
+                    <h2>Resultados da Busca</h2>
+                    <span id="results-count">0 usuários encontrados</span>
+                </div>
+
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-results">
+                        <!-- Dados inseridos via JS -->
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>Anterior</button>
+                    <span class="page-info">Página 1 de 1</span>
+                    <button class="pagination-btn" disabled>Próxima</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="full-width-section">
+            <div class="container">
+                <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo">
+                <p>Combate à pobreza menstrual: Dignidade para ser mulher!</p>
+                <p>&copy; 2023 Bons Fluidos - UTFPR Cornélio Procópio</p>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+    </body>
 </html>

@@ -1,3 +1,5 @@
+/* global carregarUsuariosComFiltro */
+
 document.addEventListener('DOMContentLoaded', function () {
     // ============ NAVBAR ============
     // Ativar link correspondente à página atual
@@ -207,102 +209,71 @@ function setupUserSearch() {
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('search-input');
     const userTypeFilter = document.getElementById('user-type-filter');
-    const statusFilter = document.getElementById('status-filter');
 
-    if (!searchBtn)
+    if (!searchBtn || !searchInput || !userTypeFilter)
         return;
 
-    // Dados mockados para demonstração
-    const mockUsers = [
-        {
-            id: 1,
-            nome: "Maria Silva",
-            tipo: "beneficiado",
-            email: "maria@email.com",
-            telefone: "(43) 99999-9999",
-            status: "ativo",
-            endereco: "Rua Exemplo, 123"
-        },
-        {
-            id: 2,
-            nome: "Joana Oliveira",
-            tipo: "voluntario",
-            email: "joana@email.com",
-            telefone: "(43) 98888-8888",
-            status: "ativo",
-            formacao: "Estudante de Enfermagem"
-        },
-        {
-            id: 3,
-            nome: "Ana Santos",
-            tipo: "beneficiado",
-            email: "ana@email.com",
-            telefone: "(43) 97777-7777",
-            status: "inativo",
-            endereco: "Av. Principal, 456"
+    const cargoMap = {
+        'voluntario': 1,
+        'beneficiado': 2,
+        'admin': 3
+    };
+
+    // Eventos
+    searchBtn.addEventListener('click', carregarUsuariosComFiltro);
+    userTypeFilter.addEventListener('change', carregarUsuariosComFiltro);
+
+    // Chamada inicial
+    carregarUsuariosComFiltro();
+
+    async function carregarUsuariosComFiltro() {
+        const filtro = userTypeFilter.value;
+        const termo = searchInput.value.trim().toLowerCase();
+        let url = 'http://localhost:8080/BonsFluidos/api/usuarios';
+
+        if (filtro !== 'all') {
+            const cargo = cargoMap[filtro];
+            url += `?cargo=${cargo}`;
         }
-    ];
 
-    function renderUsers(users) {
-        const resultsContainer = document.getElementById('users-results');
-        const resultsCount = document.getElementById('results-count');
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
 
-        resultsContainer.innerHTML = '';
-        resultsCount.textContent = `${users.length} usuário(s) encontrado(s)`;
+            const filtrados = data.filter(u =>
+                u.nome.toLowerCase().includes(termo)
+            );
 
-        users.forEach(user => {
-            const row = document.createElement('tr');
-
-            // Determinar classes para badges
-            const tipoClass = user.tipo === 'voluntario' ? 'badge-voluntario' : 'badge-beneficiado';
-            const statusClass = user.status === 'ativo' ? 'badge-status' : 'badge-status';
-
-            row.innerHTML = `
-        <td>${user.nome}</td>
-        <td><span class="user-badge ${tipoClass}">${user.tipo === 'voluntario' ? 'Voluntário' : 'Beneficiado'}</span></td>
-        <td>${user.email}</td>
-        <td>${user.telefone}</td>
-        <td><span class="user-badge ${statusClass}">${user.status === 'ativo' ? 'Ativo' : 'Inativo'}</span></td>
-        <td>
-          <button class="action-btn" title="Editar">✏️</button>
-          <button class="action-btn" title="Visualizar">👁️</button>
-          <button class="action-btn" title="${user.status === 'ativo' ? 'Desativar' : 'Ativar'}">${user.status === 'ativo' ? '❌' : '✅'}</button>
-        </td>
-      `;
-
-            resultsContainer.appendChild(row);
-        });
+            renderizarTabela(filtrados);
+        } catch (err) {
+            console.error('Erro ao carregar usuários:', err);
+        }
     }
 
-    function filterUsers() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const typeFilter = userTypeFilter.value;
-        const status = statusFilter.value;
+    function renderizarTabela(usuarios) {
+        const tbody = document.getElementById('users-results');
+        tbody.innerHTML = '';
 
-        const filtered = mockUsers.filter(user => {
-            const matchesSearch = user.nome.toLowerCase().includes(searchTerm) ||
-                    user.email.toLowerCase().includes(searchTerm);
-            const matchesType = typeFilter === 'all' || user.tipo === typeFilter;
-            const matchesStatus = status === 'all' || user.status === status;
+        const cargos = {
+            1: "Voluntário",
+            2: "Beneficiado",
+            3: "Admin"
+        };
 
-            return matchesSearch && matchesType && matchesStatus;
+        usuarios.forEach(usuario => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${usuario.nome}</td>
+                <td>${cargos[usuario.cargo] || 'Desconhecido'}</td>
+                <td>${usuario.email}</td>
+            `;
+            tbody.appendChild(tr);
         });
 
-        renderUsers(filtered);
+        document.getElementById('results-count').textContent = `${usuarios.length} usuário(s) encontrado(s)`;
     }
-
-    // Event listeners
-    searchBtn.addEventListener('click', filterUsers);
-    searchInput.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter')
-            filterUsers();
-    });
-    userTypeFilter.addEventListener('change', filterUsers);
-    statusFilter.addEventListener('change', filterUsers);
-
-    // Renderizar inicialmente
-    renderUsers(mockUsers);
 }
+
 
 // ============ GERENCIAMENTO DE PRODUTOS ============
 function setupProductsPage() {
@@ -490,3 +461,4 @@ document.addEventListener('DOMContentLoaded', function () {
     setupUserSearch();
     setupProductsPage();
 });
+

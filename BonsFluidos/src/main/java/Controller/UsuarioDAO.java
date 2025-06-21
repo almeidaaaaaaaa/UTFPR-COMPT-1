@@ -120,7 +120,7 @@ public class UsuarioDAO {
         }
     }
 
-    public List<Object[]> buscarU() throws SQLException {
+    public static List<Object[]> buscarU() throws SQLException {
         List<Object[]> usu = new ArrayList<>();
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
@@ -132,12 +132,11 @@ public class UsuarioDAO {
                     ResultSet rs = stmt.executeQuery();
 
                     while (rs.next()) {
-                        int id = rs.getInt("Usu_rg");
                         String nome = rs.getString("Usu_nome");
                         int cg = rs.getInt("Usu_cargo");
                         String em = rs.getString("Usu_email");
 
-                        usu.add(new Object[]{nome, id, cg, em});
+                        usu.add(new Object[]{nome, cg, em});
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel listar usuarios", e);
@@ -151,4 +150,23 @@ public class UsuarioDAO {
         return usu;
     }
 
+    public static List<Object[]> buscarPorCargo(int cargo) throws SQLException {
+        List<Object[]> usu = new ArrayList<>();
+        ConexaoBD bd = new ConexaoBD();
+        try (Connection conn = bd.getConnection()) {
+            String sql = "SELECT Usu_rg, Usu_nome, Usu_cargo, Usu_email FROM usuario WHERE Usu_cargo = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, cargo);
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    usu.add(new Object[]{
+                        rs.getString("Usu_nome"),
+                        rs.getInt("Usu_cargo"),
+                        rs.getString("Usu_email")
+                    });
+                }
+            }
+        }
+        return usu;
+    }
 }

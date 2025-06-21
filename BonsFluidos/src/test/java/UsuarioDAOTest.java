@@ -130,8 +130,7 @@ public class UsuarioDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/UsuarioDAOBuscarU.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(jdt.getConnection(), dataSet);
 
-        UsuarioDAO dao = new UsuarioDAO();
-        List<Object[]> usuarios = dao.buscarU();
+        List<Object[]> usuarios = UsuarioDAO.buscarU();
 
         
         Object[][] esperado = {
@@ -143,9 +142,8 @@ public class UsuarioDAOTest {
 
         for (int i = 0; i < esperado.length; i++) {
             assertEquals("Nome incorreto no índice " + i, esperado[i][0], usuarios.get(i)[0]);
-            assertEquals("RG incorreto no índice " + i, esperado[i][1], usuarios.get(i)[1]);
-            assertEquals("Cargo incorreto no índice " + i, esperado[i][2], usuarios.get(i)[2]);
-            assertEquals("Email incorreto no índice " + i, esperado[i][3], usuarios.get(i)[3]);
+            assertEquals("Cargo incorreto no índice " + i, esperado[i][2], usuarios.get(i)[1]);
+            assertEquals("Email incorreto no índice " + i, esperado[i][3], usuarios.get(i)[2]);
         }
     }
 
