@@ -1,4 +1,3 @@
-
 package Controller;
 
 import java.sql.Connection;
@@ -7,9 +6,9 @@ import java.sql.SQLException;
 import Model.Estoque;
 import java.sql.Timestamp;
 
-public class EstoqueDAO{
-    
-        public static void inserir(Estoque s) throws SQLException {
+public class EstoqueDAO {
+
+    public static void inserir(Estoque s) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
@@ -33,15 +32,15 @@ public class EstoqueDAO{
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
-        
-        public static void excluir(int cod) throws SQLException {
+
+    public static void excluir(int cod) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
                 String sql = "DELETE FROM estoque WHERE Est_cod = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                     stmt.setInt(1, cod);
-                    
+
                     stmt.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel excluir estoque", e);
@@ -53,8 +52,8 @@ public class EstoqueDAO{
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
-        
-        public static void atualizar(Estoque s) throws SQLException {
+
+    public static void atualizar(Estoque s) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
@@ -64,7 +63,7 @@ public class EstoqueDAO{
                     stmt.setTimestamp(2, Timestamp.valueOf(s.getDataS()));
                     stmt.setString(3, s.getDestino());
                     stmt.setInt(4, s.getCodigo());
-             
+
                     stmt.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel atualizar estoque", e);

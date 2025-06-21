@@ -7,7 +7,9 @@ package Controller;
 import Model.Beneficiado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 
 /**
@@ -20,13 +22,17 @@ public class BeneficiadoDAO {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
-                String sql = "INSERT INTO beneficiado(Ben_cod, Ben_data, Ben_endereco,Usuario_Usu_rg) VALUES (?, ?, ?, ?)";
-                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setInt(1, b.getCod());
-                    stmt.setTimestamp(2, Timestamp.valueOf(b.getDataE()));
-                    stmt.setString(3, b.getEndereco());
-                    stmt.setInt(4, b.getRG());
+                String sql = "INSERT INTO beneficiado(Ben_data, Ben_endereco,Usuario_Usu_rg) VALUES (?, ?, ?)";
+                try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                    stmt.setTimestamp(1, Timestamp.valueOf(b.getDataE()));
+                    stmt.setString(2, b.getEndereco());
+                    stmt.setInt(3, b.getRG());
                     stmt.executeUpdate();
+                    try (ResultSet rs = stmt.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            b.setCod(rs.getInt(1));
+                        }
+                    }
                 } catch (SQLException e) {
                     throw new RuntimeException("Não foi possivel inserir novo Beneficiado", e);
                 }
@@ -37,17 +43,17 @@ public class BeneficiadoDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
-    
+
     public static void atualizar(Beneficiado b) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
                 String sql = "UPDATE beneficiado SET Ben_data = ?, Ben_endereco = ? WHERE Ben_cod = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    
+
                     stmt.setTimestamp(1, Timestamp.valueOf(b.getDataE()));
                     stmt.setString(2, b.getEndereco());
-                    
+
                     stmt.setInt(3, b.getCod());
                     stmt.executeUpdate();
                 } catch (SQLException e) {
@@ -60,14 +66,14 @@ public class BeneficiadoDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
     }
-    
+
     public static void excluir(int cod) throws SQLException {
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
             if (conn != null) {
                 String sql = "DELETE FROM beneficiado WHERE Ben_cod = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-          
+
                     stmt.setInt(1, cod);
                     stmt.executeUpdate();
                 } catch (SQLException e) {

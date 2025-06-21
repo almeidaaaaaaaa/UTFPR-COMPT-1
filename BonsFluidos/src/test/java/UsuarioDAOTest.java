@@ -75,13 +75,13 @@ public class UsuarioDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/UsuarioDAOVerificarLogin.xml"));
         DatabaseOperation.CLEAN_INSERT.execute(jdt.getConnection(), dataSet);
 
-        boolean loginCorreto = UsuarioDAO.verificarLogin("123", "senha123");
+        boolean loginCorreto = UsuarioDAO.verificarLogin(123, "senha123");
         assertTrue(loginCorreto);
 
-        boolean loginIncorreto = UsuarioDAO.verificarLogin("123", "senhaErrada");
+        boolean loginIncorreto = UsuarioDAO.verificarLogin(123, "senhaErrada");
         assertFalse(loginIncorreto);
 
-        boolean usuarioInexistente = UsuarioDAO.verificarLogin("999", "qualquerSenha");
+        boolean usuarioInexistente = UsuarioDAO.verificarLogin(999, "qualquerSenha");
         assertFalse(usuarioInexistente);
     }
 

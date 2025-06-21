@@ -1,23 +1,23 @@
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\UsuarioDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Admin.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\Signup.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\VoluntarioDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Usuario.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\com\mycompany\bonsfluidos\resources\JavaEE8Resource.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\EventoDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\LembretesDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Beneficiado.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Doacao.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Voluntario.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Evento.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\DoacaoDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Estoque.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\AdminDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\EstoqueDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\UsuarioController.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\ConexaoBD.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\com\mycompany\bonsfluidos\JAXRSConfiguration.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\BeneficiadoDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Controller\ProdutoDAO.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Lembretes.java
-C:\Users\gabri\OneDrive\Documents\NetBeansProjects\BonsFluidos\src\main\java\Model\Produto.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\com\mycompany\bonsfluidos\JAXRSConfiguration.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Beneficiado.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\ProdutoDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\Signup.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Evento.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Lembretes.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\EventoDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\ConexaoBD.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\VoluntarioController.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\BeneficiadoController.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\VoluntarioDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Estoque.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Voluntario.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\AdminDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\UsuarioDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Usuario.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\LembretesDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\com\mycompany\bonsfluidos\resources\JavaEE8Resource.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\BeneficiadoDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\EstoqueDAO.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Admin.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Model\Produto.java
+C:\Competencia 1 - Faculdade\UTFPR-COMPT-1\BonsFluidos\src\main\java\Controller\LoginController.java

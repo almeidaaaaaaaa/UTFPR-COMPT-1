@@ -31,12 +31,12 @@ public class UsuarioDAO {
 
     }
 
-    public static boolean verificarLogin(String usuario, String senha) {
+    public static boolean verificarLogin(int rg, String senha) {
         ConexaoBD bd = new ConexaoBD();
         Connection conn = bd.getConnection();
         String sql = "SELECT * FROM usuario WHERE Usu_rg = ? AND Usu_senha = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, usuario);
+            stmt.setInt(1, rg);
             stmt.setString(2, senha);
 
             ResultSet rs = stmt.executeQuery();
@@ -118,9 +118,9 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
-    }    
-    
-    public List<Object[]>buscarU() throws SQLException {
+    }
+
+    public List<Object[]> buscarU() throws SQLException {
         List<Object[]> usu = new ArrayList<>();
         ConexaoBD bd = new ConexaoBD();
         try (Connection conn = bd.getConnection()) {
@@ -128,15 +128,15 @@ public class UsuarioDAO {
 
                 String sql = "SELECT Usu_rg, Usu_nome, Usu_cargo, Usu_email FROM usuario";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    
+
                     ResultSet rs = stmt.executeQuery();
-                    
-                    while(rs.next()){
+
+                    while (rs.next()) {
                         int id = rs.getInt("Usu_rg");
-                        String nome = rs.getString("Usu_nome"); 
+                        String nome = rs.getString("Usu_nome");
                         int cg = rs.getInt("Usu_cargo");
                         String em = rs.getString("Usu_email");
-                        
+
                         usu.add(new Object[]{nome, id, cg, em});
                     }
                 } catch (SQLException e) {
@@ -149,6 +149,6 @@ public class UsuarioDAO {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
         return usu;
-    }    
-    
+    }
+
 }

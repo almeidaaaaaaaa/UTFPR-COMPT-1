@@ -4,10 +4,9 @@ public class Admin extends Usuario{
     private int idMestre;
     private int cod;
 
-    public Admin(int idMestre, int cod, String nome, int RG, int cargo, String email, String senha) {
+    public Admin(int idMestre, String nome, int RG, int cargo, String email, String senha) {
         super(nome, RG, cargo, email, senha);
         this.idMestre = idMestre;
-        this.cod = cod;
     }
 
     public int getCod() {

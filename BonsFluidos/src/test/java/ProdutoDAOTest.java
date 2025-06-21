@@ -57,7 +57,6 @@ public class ProdutoDAOTest {
                 LocalDateTime.of(2024, 1, 5, 10, 0), // Est_dataS
                 "Destino Final", // Est_destino
                 produtos, // Produtos
-                10, // Voluntario_Vol_cod
                 LocalDateTime.of(2024, 1, 1, 9, 0), // Voluntario_dataE
                 "Gabriel", // Usuario_nome
                 123456, // Usuario_RG
@@ -94,7 +93,6 @@ public class ProdutoDAOTest {
                 LocalDateTime.of(2024, 1, 5, 10, 0), // Est_dataS
                 "Destino Final", // Est_destino
                 produtos, // Produtos
-                10, // Voluntario_Vol_cod
                 LocalDateTime.of(2024, 1, 1, 9, 0), // Voluntario_dataE
                 "Gabriel", // Usuario_nome
                 123456, // Usuario_RG
@@ -117,7 +115,6 @@ public class ProdutoDAOTest {
                 LocalDateTime.of(2025, 1, 5, 10, 0), // Est_dataS
                 "Destino Final2", // Est_destino
                 produtos, // Produtos
-                20, // Voluntario_Vol_cod
                 LocalDateTime.of(2024, 1, 1, 9, 0), // Voluntario_dataE
                 "Gabriel", // Usuario_nome
                 123456, // Usuario_RG
@@ -155,7 +152,6 @@ public class ProdutoDAOTest {
                 LocalDateTime.of(2024, 1, 5, 10, 0), // Est_dataS
                 "Destino Final", // Est_destino
                 produtos, // Produtos
-                10, // Voluntario_Vol_cod
                 LocalDateTime.of(2024, 1, 1, 9, 0), // Voluntario_dataE
                 "Gabriel", // Usuario_nome
                 123456, // Usuario_RG
@@ -180,35 +176,32 @@ public class ProdutoDAOTest {
 
         Assertion.assertEquals(expectedTable, currentTable);
     }
-    
-    
+
     @Test
-public void buscarP() throws Exception {
+    public void buscarP() throws Exception {
 
-    // Carrega o dataset XML com produto, estoque, voluntario e usuario
-    IDataSet dataSet = new FlatXmlDataSetBuilder()
-            .build(getClass().getResourceAsStream("/Datasets/ProdutoDAOBuscarP.xml"));
-    DatabaseOperation.CLEAN_INSERT.execute(jdt.getConnection(), dataSet);
+        // Carrega o dataset XML com produto, estoque, voluntario e usuario
+        IDataSet dataSet = new FlatXmlDataSetBuilder()
+                .build(getClass().getResourceAsStream("/Datasets/ProdutoDAOBuscarP.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(jdt.getConnection(), dataSet);
 
-    ProdutoDAO dao = new ProdutoDAO();
-    List<Object[]> produtos = dao.buscarP();
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Object[]> produtos = dao.buscarP();
 
-    // Esperado conforme o dataset.xml que você fez acima
-    Object[][] esperado = {
-        {1, 10, "Produto Teste", 1},
-        {2, 10, "Produto teste 2", 1}
-    };
+        // Esperado conforme o dataset.xml que você fez acima
+        Object[][] esperado = {
+            {1, 10, "Produto Teste", 1},
+            {2, 10, "Produto teste 2", 1}
+        };
 
-    assertEquals("Quantidade de produtos retornados incorreta", esperado.length, produtos.size());
+        assertEquals("Quantidade de produtos retornados incorreta", esperado.length, produtos.size());
 
-    for (int i = 0; i < esperado.length; i++) {
-        assertEquals("ID incorreto no índice " + i, esperado[i][0], produtos.get(i)[0]);
-        assertEquals("Quantidade incorreta no índice " + i, esperado[i][1], produtos.get(i)[1]);
-        assertEquals("Nome incorreto no índice " + i, esperado[i][2], produtos.get(i)[2]);
-        assertEquals("Código do estoque incorreto no índice " + i, esperado[i][3], produtos.get(i)[3]);
+        for (int i = 0; i < esperado.length; i++) {
+            assertEquals("ID incorreto no índice " + i, esperado[i][0], produtos.get(i)[0]);
+            assertEquals("Quantidade incorreta no índice " + i, esperado[i][1], produtos.get(i)[1]);
+            assertEquals("Nome incorreto no índice " + i, esperado[i][2], produtos.get(i)[2]);
+            assertEquals("Código do estoque incorreto no índice " + i, esperado[i][3], produtos.get(i)[3]);
+        }
     }
-}
-
-
 
 }

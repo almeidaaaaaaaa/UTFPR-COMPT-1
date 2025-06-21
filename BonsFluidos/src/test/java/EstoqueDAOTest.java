@@ -53,7 +53,6 @@ public class EstoqueDAOTest {
             LocalDateTime.of(2024, 1, 5, 10, 0),    // Est_dataS
             "Destino Final",                        // Est_destino
             produtos,                               // Produtos
-            10,                                     // Voluntario_Vol_cod
             LocalDateTime.of(2024, 1, 1, 9, 0),     // Voluntario_dataE
             "Gabriel",                              // Usuario_nome
             123456,                                 // Usuario_RG
@@ -76,7 +75,7 @@ public class EstoqueDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/EstoqueDAOInserir.xml"));
         ITable expectedTable = expectedDataSet.getTable("estoque");
 
-        Assertion.assertEquals(expectedTable, currentTable);
+        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, new String[] {"Voluntario_Vol_cod"});
     }
     
     @Test
@@ -90,7 +89,6 @@ public class EstoqueDAOTest {
             LocalDateTime.of(2024, 1, 5, 10, 0),    // Est_dataS
             "Destino Final",                        // Est_destino
             produtos,                               // Produtos
-            10,                                     // Voluntario_Vol_cod
             LocalDateTime.of(2024, 1, 1, 9, 0),     // Voluntario_dataE
             "Gabriel",                              // Usuario_nome
             123456,                                 // Usuario_RG
@@ -116,7 +114,7 @@ public class EstoqueDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/dataset_inicial.xml"));
         ITable expectedTable = expectedDataSet.getTable("estoque");
 
-        Assertion.assertEquals(expectedTable, currentTable);
+        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, new String[] {"Voluntario_Vol_cod"});
     }
     
 
@@ -132,7 +130,6 @@ public class EstoqueDAOTest {
             LocalDateTime.of(2024, 1, 5, 10, 0),    // Est_dataS
             "Destino Final",                        // Est_destino
             produtos,                               // Produtos
-            10,                                     // Voluntario_Vol_cod
             LocalDateTime.of(2024, 1, 1, 9, 0),     // Voluntario_dataE
             "Gabriel",                              // Usuario_nome
             123456,                                 // Usuario_RG
@@ -148,7 +145,7 @@ public class EstoqueDAOTest {
 
         EstoqueDAO.inserir(estoque);
         
-        Estoque e = new Estoque(1, LocalDateTime.of(2025, 6, 10, 12, 0), LocalDateTime.of(2025, 6, 11, 12, 0), "Destino Atualizado", new ArrayList<>(), 10, LocalDateTime.of(2024, 1, 1, 9, 0), "Gabriel", 123456, 1, "gabriel@email.com", "123");
+        Estoque e = new Estoque(1, LocalDateTime.of(2025, 6, 10, 12, 0), LocalDateTime.of(2025, 6, 11, 12, 0), "Destino Atualizado", new ArrayList<>(), LocalDateTime.of(2024, 1, 1, 9, 0), "Gabriel", 123456, 1, "gabriel@email.com", "123");
 
         EstoqueDAO.atualizar(e);
 
@@ -159,7 +156,7 @@ public class EstoqueDAOTest {
                 .build(getClass().getResourceAsStream("/Datasets/EstoqueDAOAtualizar.xml"));
         ITable expectedTable = expectedDataSet.getTable("estoque");
 
-        Assertion.assertEquals(expectedTable, currentTable);
+        Assertion.assertEqualsIgnoreCols(expectedTable, currentTable, new String[] {"Voluntario_Vol_cod"});
     }
 }
 
