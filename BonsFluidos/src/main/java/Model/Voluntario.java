@@ -2,7 +2,8 @@ package Model;
 
 import java.time.LocalDateTime;
 
-public class Voluntario extends Usuario{
+public class Voluntario extends Usuario {
+
     private int cod;
     private LocalDateTime dataE;
 
@@ -26,5 +27,5 @@ public class Voluntario extends Usuario{
     public void setDataE(LocalDateTime dataE) {
         this.dataE = dataE;
     }
-        
+
 }
