@@ -169,4 +169,22 @@ public class UsuarioDAO {
         }
         return usu;
     }
+   public static Usuario buscarPorRG(int rg) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        Usuario usuario = null;
+
+        try (Connection conn = bd.getConnection()) {
+            String sql = "SELECT * FROM usuario WHERE Usu_rg = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, rg);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        usuario = new Usuario(rs.getString("Usu_nome"), rg,rs.getInt("Usu_cargo"), rs.getString("Usu_email"), rs.getString("Usu_senha"));
+                    }
+                }
+            }
+        }
+
+        return usuario;
+    }
 }

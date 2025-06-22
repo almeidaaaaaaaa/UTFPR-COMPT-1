@@ -1,45 +1,21 @@
 package Model;
 
-import java.util.List;
 import java.time.LocalDateTime;
 
 public class Estoque extends Voluntario{
     
     private int codigo;
-    private LocalDateTime dataE2;
-    private LocalDateTime dataS;
-    private String destino;
-    private final List<Produto> produtos;
+    private LocalDateTime dataEE;
+    private String est_nome;
+    private int quantidade;
 
-    public Estoque(int codigo, LocalDateTime dataE2, LocalDateTime dataS, String destino, List<Produto> produtos, LocalDateTime dataE, String nome, int RG, int cargo, String email, String senha) {
+    public Estoque(LocalDateTime dataEE, String est_nome, int quantidade, LocalDateTime dataE, String nome, int RG, int cargo, String email, String senha) {
         super(dataE, nome, RG, cargo, email, senha);
-        this.codigo = codigo;
-        this.dataE2 = dataE2;
-        this.dataS = dataS;
-        this.destino = destino;
-        this.produtos = produtos;
-    }
-
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void adicionarProduto(Produto produto) {
-        produtos.add(produto);
+        this.dataEE = dataEE;
+        this.est_nome = est_nome;
+        this.quantidade = quantidade;
     }
     
-    public void removerProduto(Produto produto) {
-        produtos.remove(produto);
-    }
-    
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
     public int getCodigo() {
         return codigo;
     }
@@ -48,30 +24,27 @@ public class Estoque extends Voluntario{
         this.codigo = codigo;
     }
 
-
-    /**
-     * @return the dataE
-     */
-    public LocalDateTime getDataE2() {
-        return dataE2;
+    public LocalDateTime getDataEE() {
+        return dataEE;
     }
 
-  
-    public void setDataE2(LocalDateTime dataE2) {
-        this.dataE2 = dataE2;
+    public void setDataEE(LocalDateTime dataEE) {
+        this.dataEE = dataEE;
     }
 
-    /**
-     * @return the dataS
-     */
-    public LocalDateTime getDataS() {
-        return dataS;
+    public String getEst_nome() {
+        return est_nome;
     }
 
-    /**
-     * @param dataS the dataS to set
-     */
-    public void setDataS(LocalDateTime dataS) {
-        this.dataS = dataS;
+    public void setEst_nome(String est_nome) {
+        this.est_nome = est_nome;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }

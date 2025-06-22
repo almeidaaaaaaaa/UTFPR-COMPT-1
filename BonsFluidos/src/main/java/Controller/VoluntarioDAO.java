@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Usuario;
 import Model.Voluntario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -77,5 +78,25 @@ public class VoluntarioDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Nao foi possivel conectar ao banco", e);
         }
+    }
+    
+    public static Voluntario buscarPorRG(Usuario usu) throws SQLException {
+        ConexaoBD bd = new ConexaoBD();
+        Voluntario voluntario = null;
+
+        try (Connection conn = bd.getConnection()) {
+            String sql = "SELECT * FROM voluntario WHERE Usuario_Usu_rg = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, usu.getRG());
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        voluntario = new Voluntario(rs.getTimestamp("Vol_data").toLocalDateTime(), usu.getNome(), usu.getRG(), usu.getCargo(), usu.getEmail(), usu.getSenha());
+                        voluntario.setCod(rs.getInt("Vol_cod"));
+                    }
+                }
+            }
+        }
+
+        return voluntario;
     }
 }

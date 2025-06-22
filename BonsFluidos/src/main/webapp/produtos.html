@@ -1,16 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bons Fluidos - Produtos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="navbar">
-    <img src="figs/logosemfundo.png" alt="Logo" class="logo">
+    <img src="figs/logosemfundo.png" alt="Logo" class="logo" />
     <nav>
       <a href="index.html" class="nav-link">Início</a>
       <a href="quem-somos.html" class="nav-link">Quem Somos</a>
@@ -32,7 +31,7 @@
 
   <footer class="full-width-section">
     <div class="container">
-      <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo">
+      <img src="figs/logosemfundo.png" alt="Logo Bons Fluidos" class="footer-logo" />
       <p>Combate à pobreza menstrual: Dignidade para ser mulher!</p>
       <p>&copy; 2023 Bons Fluidos - UTFPR Cornélio Procópio</p>
     </div>
@@ -40,65 +39,43 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const mockProducts = [
-        {
-          id: 1,
-          nome: "Absorvente Higiênico",
-          tipo: "absorvente",
-          quantidade: 150,
-          unidade: "unidade",
-          descricao: "Absorvente descartável noturno",
-          imagem: "figs/absorv.webp"
-        },
-        {
-          id: 2,
-          nome: "Coletor Menstrual",
-          tipo: "coletor",
-          quantidade: 30,
-          unidade: "unidade",
-          descricao: "Coletor reutilizável tamanho P",
-          imagem: "figs/coletor-menstrual.png"
-        },
-        {
-          id: 3,
-          nome: "Kit Higiene",
-          tipo: "outro",
-          quantidade: 25,
-          unidade: "pacote",
-          descricao: "Kit contendo absorventes e lenços umedecidos",
-          imagem: "figs/kit.jpg"
-        }
-      ];
-
       const productsGrid = document.querySelector('.products-grid');
 
-      function getProductTypeName(type) {
-        const types = {
-          'absorvente': 'Absorvente',
-          'coletor': 'Coletor Menstrual',
-          'calcinha': 'Calcinha Absorvente',
-          'outro': 'Outro'
-        };
-        return types[type] || type;
+      function renderizarProdutos(produtos) {
+        productsGrid.innerHTML = '';
+
+        produtos.forEach(produto => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <div class="product-info">
+              <h3 class="product-name">${produto.nome}</h3>
+              <p class="product-description">
+                <strong>Quantidade:</strong> ${produto.quantidade}<br>
+                <strong>RG:</strong> ${produto.rg}
+              </p>
+            </div>
+          `;
+          productsGrid.appendChild(card);
+        });
       }
 
-      mockProducts.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <img src="${product.imagem}" alt="${product.nome}" class="product-image">
-          <div class="product-info">
-            <h3 class="product-name">${product.nome}</h3>
-            <span class="product-type">${getProductTypeName(product.tipo)}</span>
-            <p class="product-description">${product.descricao}</p>
-            <div class="product-stock">
-              <span>Disponível:</span>
-              <strong>${product.quantidade} ${product.unidade}</strong>
-            </div>
-          </div>
-        `;
-        productsGrid.appendChild(card);
-      });
+      // Busca produtos do backend
+      fetch('http://localhost:8080/BonsFluidos/api/produto')
+        .then(response => response.json())
+        .then(data => {
+          const produtos = data.map(p => ({
+            id: p.codigo,
+            nome: p.est_nome,
+            quantidade: p.quantidade,
+            rg: p.rg
+          }));
+          renderizarProdutos(produtos);
+        })
+        .catch(error => {
+          console.error("Erro ao buscar produtos do backend:", error);
+          alert('Erro ao carregar produtos: ' + error.message);
+        });
     });
   </script>
 </body>
