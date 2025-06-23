@@ -73,7 +73,7 @@ O objetivo do projeto é demonstrar:
 - João Gabriel Borges Monteiro - 2475464
 - Gabriel Almeida - 2503603
 - Gustavo Oliveira Pacheco Rocha - 2525453
-- (Adicione mais conforme necessário)
+- Gabriel Henrique Scarduelli - 2503620
 
 ---
 
